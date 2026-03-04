@@ -1,0 +1,294 @@
+{
+  "paquetes": [
+    {
+      "id": "tutorial",
+      "nombre": "Tutorial: La Happy Pandi Investiga",
+      "descripcion": "La Happy Pandi resuelve sus primeros casos. ¡Aprende con ellos a usar la cuadrícula de deducción!",
+      "icono": "🔍",
+      "casos": [
+        {
+          "id": "caso_tarta",
+          "titulo": "La Tarta del Conde",
+          "meta": "Descubre quién se comió la tarta, en qué sala lo hizo y por qué.",
+          "dificultad": 1,
+          "historia": [
+            "Era sábado por la tarde y la Happy Pandi había aceptado un encargo muy especial: investigar la misteriosa desaparición de una tarta de tres pisos en la mansión del Conde Polvoriento.",
+            "—Un momento —dijo Ana, ajustándose las gafas—. ¿Nos han llamado para investigar una tarta? ¿En serio?",
+            "—Una tarta de limón con tres pisos, Ana —respondió Victoria muy seria—. Encargada para celebrar el día en que el Conde inventó el calcetín de lunares. Esto es un asunto de Estado.",
+            "—Pues yo tengo hambre —murmuró Tao, tropezando con el paragüero de la entrada.",
+            "Pili sobrevoló el salón escaneando la habitación con sus sensores. —Según mis cálculos, hay tres sospechosos con acceso a la mansión esta tarde: la Baronesa Nocilla, el Profesor Tornillo y la Agente Pomelo.",
+            "—¡Qué nombres más raros! —exclamó Michael en inglés, y luego lo repitió en español—. Digo… ¡qué nombres tan originales!",
+            "Lola ya seguía el rastro de migas por el suelo. —Alguien tenía mucha hambre —dijo sin levantar la vista—. Seguidme.",
+            "Alex abría su cuaderno y dibujaba los tres sospechosos. —Bien —dijo Victoria—. Usaremos la cuadrícula de deducción. Cada prueba nos acerca a la verdad. ¡A investigar!"
+          ],
+          "quien": [
+            {
+              "id": "baronesa",
+              "nombre": "La Baronesa",
+              "atributos": { "altura": "1,72 m", "mano buena": "diestra", "ojos": "marrones", "pelo": "rizado negro" }
+            },
+            {
+              "id": "profesor",
+              "nombre": "El Profesor",
+              "atributos": { "altura": "1,58 m", "mano buena": "zurdo", "ojos": "azules", "pelo": "blanco escaso" }
+            },
+            {
+              "id": "agente",
+              "nombre": "La Agente",
+              "atributos": { "altura": "1,65 m", "mano buena": "diestra", "ojos": "verdes", "pelo": "liso castaño" }
+            }
+          ],
+          "donde": [
+            { "id": "biblioteca", "nombre": "Biblioteca" },
+            { "id": "laboratorio", "nombre": "Laboratorio" },
+            { "id": "jardin", "nombre": "Jardín" }
+          ],
+          "que": [
+            { "id": "hambre", "nombre": "Tenía hambre" },
+            { "id": "broma", "nombre": "Gastar broma" },
+            { "id": "esconder", "nombre": "Ocultar algo" }
+          ],
+          "pruebas": [
+            {
+              "id": "prueba_migas",
+              "tipo": "text",
+              "titulo": "🍰 Rastro de migas",
+              "descripcion": "—¡Aquí! —gritó Lola desde el pasillo—. Las migas forman un camino desde la cocina hasta la sala del fondo.\n\nSiguieron el rastro. Las migas eran amarillas, del mismo color que el bizcocho de limón de la tarta. El camino terminaba frente a la puerta de una sala con miles de libros.",
+              "imagen": null
+            },
+            {
+              "id": "prueba_nota",
+              "tipo": "text",
+              "titulo": "✉️ Nota anónima",
+              "descripcion": "Ana encontró una nota doblada junto al plato vacío y la leyó en voz alta:\n\n«Lo siento muchísimo. Llevaba tres días fuera sin comer nada decente y el olor era imposible de resistir. No pude evitarlo».\n\n—La letra está muy inclinada a la derecha —observó Victoria—. Y fijaos: la persona apoya mucho el lado derecho del bolígrafo. Eso lo hace la gente que escribe con la mano derecha.",
+              "imagen": null
+            },
+            {
+              "id": "prueba_estante",
+              "tipo": "text",
+              "titulo": "📏 Informe del Conde",
+              "descripcion": "El Conde Polvoriento explicó entre sollozos que había guardado la tarta en el tercer estante de la despensa para que nadie la viera. Luego Pili midió:\n\n«Tercer estante: a 1,62 metros del suelo. Para alcanzarlo sin taburete hace falta medir más de 1,62 m».\n\n—O sea que solo la Baronesa llega —dijo Michael contando con los dedos—. Ella mide 1,72. Las otras dos no.",
+              "imagen": null
+            }
+          ],
+          "pistas": [
+            "—Las migas amarillas llevan directo a la biblioteca —dijo Lola—. Quienquiera que tomó la tarta, la disfrutó entre libros. Podemos marcar ✔ en Biblioteca para quien la tomó y ✖ en los otros lugares.",
+            "—Espera —dijo Victoria—. Aún no sabemos quién fue. Sigamos. La nota dice 'tres días fuera sin comer'. Eso no es una broma ni un plan para esconder algo. Es hambre de verdad. Así que el motivo es 'tenía hambre'.",
+            "—El estante está a 1,62 m —repitió Michael—. El Profesor mide 1,58. ¡No llega! Podemos poner ✖ para el Profesor en todos los lugares. Él no pudo tomar la tarta.",
+            "—Y la nota —continuó Victoria mirando a los demás—. Está escrita inclinando el bolígrafo hacia la derecha, como hacen las personas diestras. El Profesor es zurdo. Eso lo confirma: no fue él.",
+            "—Entonces quedan la Baronesa y la Agente —dijo Alex sin dejar de dibujar—. La Baronesa mide 1,72 y llega al estante. La Agente mide 1,65 y también llega. Las dos podrían haber cogido la tarta.",
+            "—Pero la nota habla de 'tres días fuera sin comer' —recordó Ana—. La Baronesa vive en la mansión. Nunca estuvo 'fuera'. En cambio... —se ajustó las gafas— ...la Agente Pomelo estuvo tres días en una misión secreta. ¡Ella es!",
+            "—Biblioteca, hambre, la Agente —resumió Victoria despacio—. Las migas, la nota, el estante... todo apunta al mismo lugar. —Se giró hacia los demás—. ¿Alguien no está de acuerdo?\n—Yo solo quería preguntar si queda algo de tarta —dijo Tao."
+          ],
+          "solucion": { "quien": "agente", "donde": "biblioteca", "que": "hambre" },
+          "feedback_ok": "¡BRILLANTE! La Agente Pomelo llevaba tres días en misión sin probar bocado. Al volver a la mansión, el olor de la tarta fue irresistible. Se la llevó a la Biblioteca para comérsela en paz entre sus libros favoritos. ¡La Happy Pandi resuelve su primer caso!",
+          "feedback_ko": "—Mmm, algo no cuadra —murmuró Victoria frunciendo el ceño—. Revisa el estante y la nota. ¿Quién llevaba días fuera? ¿Quién llega al estante? ¡Tú puedes, detective!"
+        },
+        {
+          "id": "caso_llave_torre",
+          "titulo": "La Llave de la Torre",
+          "meta": "Descubre quién tomó la llave, dónde la escondió y con qué intención.",
+          "dificultad": 1,
+          "historia": [
+            "El segundo caso llegó el domingo por la mañana. Pili aterrizó sobre la mesa del desayuno con un holograma urgente.",
+            "—¡Buenos días! En el Castillo Neblinoso han robado la llave de la Torre Prohibida —anunció con su voz más dramática—. Lleva cerrada cien años.",
+            "—¿Qué habrá dentro? —dijo Ana levantando la mano—. Un dragón dormido, un tesoro maldito o... —pausa teatral— ...un baño muy antiguo.",
+            "—Ana. —Lola la miró fijamente.",
+            "—Perdona, perdona. Me centro.",
+            "Michael ya anotaba a toda velocidad. —Tres sospechosos: Lord Zapatudo, que colecciona cosas ajenas; la Duquesa Ventisca, que lleva semanas murmurando sobre la torre; y el Mayordomo Corcovado, que conoce cada rincón del castillo.",
+            "—¿Un mayordomo llamado Corcovado? —Tao se rio y tropezó con su silla—. Perdón.",
+            "—El barro, el diario y el cuervo guardián son nuestras tres pruebas —dijo Victoria organizando las fichas—. Paso a paso, como hicimos antes. ¡A usar la cuadrícula!"
+          ],
+          "quien": [
+            {
+              "id": "lord",
+              "nombre": "Lord Zapatudo",
+              "atributos": { "altura": "1,80 m", "mano buena": "zurdo", "ojos": "grises", "pelo": "castaño liso" }
+            },
+            {
+              "id": "duquesa",
+              "nombre": "La Duquesa",
+              "atributos": { "altura": "1,63 m", "mano buena": "diestra", "ojos": "azules", "pelo": "blanco ondulado" }
+            },
+            {
+              "id": "mayordomo",
+              "nombre": "El Mayordomo",
+              "atributos": { "altura": "1,70 m", "mano buena": "diestra", "ojos": "marrones", "pelo": "negro con canas" }
+            }
+          ],
+          "donde": [
+            { "id": "sotano", "nombre": "Sótano" },
+            { "id": "jardin_rosas", "nombre": "Jardín rosas" },
+            { "id": "torre_vigia", "nombre": "Torre Vigía" }
+          ],
+          "que": [
+            { "id": "curiosidad", "nombre": "Por curiosidad" },
+            { "id": "vender", "nombre": "Para venderla" },
+            { "id": "proteger", "nombre": "Para protegerla" }
+          ],
+          "pruebas": [
+            {
+              "id": "prueba_barro",
+              "tipo": "text",
+              "titulo": "🌱 Análisis del barro",
+              "descripcion": "—Este barro es rojizo —dijo Victoria arrodillándose bajo el gancho vacío—. Pili, ¿de dónde viene?\n\n—Solo existe en el jardín de las rosas, cerca del estanque —respondió Pili—. Conclusión: quien tomó la llave pisó ese jardín esa misma noche.",
+              "imagen": null
+            },
+            {
+              "id": "prueba_diario",
+              "tipo": "text",
+              "titulo": "📔 Diario encontrado",
+              "descripcion": "Lola encontró el diario abierto sobre la mesita de la sala azul. Ana leyó en voz alta la última entrada:\n\n«Alguien muy peligroso viene a por el secreto de la torre. He averiguado cuándo llegará. Debo actuar antes. La llave estará más segura conmigo que en ese gancho».\n\n—¡Ella sabía que venía alguien! —exclamó Michael.",
+              "imagen": null
+            },
+            {
+              "id": "prueba_cuervo",
+              "tipo": "text",
+              "titulo": "🐦 Testimonio del cuervo",
+              "descripcion": "El cuervo guardián del castillo graznó tres veces cuando los niños se acercaron. Pili alzó una aleta.\n\n—Permito que yo interprete. El cuervo indica que vio a alguien cruzar el jardín de las rosas a las 2 de la madrugada. La persona tenía el pelo completamente blanco y llevaba algo brillante en la mano.\n\n—¿El cuervo habla? —preguntó Tao.\n—Yo interpreto sus patrones de graznido —aclaró Pili—. Hay una diferencia enorme.",
+              "imagen": null
+            }
+          ],
+          "pistas": [
+            "—El barro rojizo solo existe en el jardín de las rosas —dijo Victoria—. Así que podemos marcar ✖ para el Sótano y la Torre Vigía en quienquiera que sea. El lugar es el Jardín de rosas.",
+            "—Espera, aún no sabemos quién fue —dijo Lola—. Miremos el diario. La persona sabía que venía alguien peligroso y quería proteger la llave. Eso no es curiosidad ni querer venderla. El motivo es 'para protegerla'.",
+            "—Ahora el cuervo —continuó Victoria—. Vio a alguien con el pelo completamente blanco. Revisad las fichas: Lord Zapatudo tiene el pelo castaño liso. Él no tiene pelo blanco. Podemos poner ✖ a Lord Zapatudo en todos los lugares.",
+            "—El Mayordomo —dijo Alex sin levantar la vista de su cuaderno— tiene el pelo negro con canas. Eso no es 'completamente blanco'. El cuervo no vio al Mayordomo.",
+            "—Entonces solo queda una persona con pelo completamente blanco —dijo Ana, muy emocionada—. ¡La Duquesa Ventisca tiene el pelo blanco ondulado! ¡Ella encaja con lo que vio el cuervo!",
+            "—Y el diario —recordó Michael— habla exactamente de su situación: sabe que viene alguien peligroso y quiere proteger el secreto. La Duquesa tenía el motivo y estuvo en el jardín de rosas esa noche."
+          ],
+          "solucion": { "quien": "duquesa", "donde": "jardin_rosas", "que": "proteger" },
+          "feedback_ok": "¡CASO RESUELTO! La Duquesa Ventisca tomó la llave y la escondió en el jardín de las rosas para proteger el secreto de la torre de un visitante peligroso. ¡Sus intenciones eran buenas! La Happy Pandi lo ha conseguido.",
+          "feedback_ko": "—Casi —dijo Victoria—. Fíjate en el color del pelo y en el diario. ¿Quién tenía el motivo? ¿Quién vio el cuervo? ¡Las pruebas no mienten!"
+        }
+      ]
+    },
+    {
+      "id": "aventuras",
+      "nombre": "Aventuras: Casos en la Ciudad",
+      "descripcion": "Casos más complejos ambientados en los rincones de la ciudad. ¿Estás listo?",
+      "icono": "🏙️",
+      "casos": [
+        {
+          "id": "caso_estatua",
+          "titulo": "La Estatua de la Plaza",
+          "meta": "Averigua quién pintó la estatua, dónde compró la pintura y por qué.",
+          "dificultad": 2,
+          "historia": [
+            "Amaneció y la estatua del fundador de la ciudad apareció pintada de colores brillantes. La comisaría encargó el caso a la Happy Pandi.",
+            "Tres sospechosos: Carla, artista callejera del barrio norte; el Sr. Obed, comerciante del centro; y Nuria, estudiante de arte del barrio sur.",
+            "La pintura usada es especial y solo se vende en tres tiendas. Cada uno tenía una razón diferente. ¡A investigar!"
+          ],
+          "quien": [
+            { "id": "carla", "nombre": "Carla", "atributos": { "barrio": "norte", "profesión": "artista", "pelo": "teñido" } },
+            { "id": "obed", "nombre": "Sr. Obed", "atributos": { "barrio": "centro", "profesión": "comerciante", "pelo": "escaso" } },
+            { "id": "nuria", "nombre": "Nuria", "atributos": { "barrio": "sur", "profesión": "estudiante arte", "pelo": "largo" } }
+          ],
+          "donde": [
+            { "id": "mercado_arte", "nombre": "Mercado Arte" },
+            { "id": "ferreteria_sur", "nombre": "Ferretería Sur" },
+            { "id": "papeleria", "nombre": "Papelería" }
+          ],
+          "que": [
+            { "id": "protesta", "nombre": "Protesta" },
+            { "id": "publicidad", "nombre": "Publicidad" },
+            { "id": "proyecto", "nombre": "Proyecto escolar" }
+          ],
+          "pruebas": [
+            {
+              "id": "prueba_ticket",
+              "tipo": "text",
+              "titulo": "Ticket de compra",
+              "descripcion": "Ticket encontrado junto a la estatua: «1 bote pintura spray profesional - Ferretería del Sur - 23:10h». Sin nombre.",
+              "imagen": null
+            },
+            {
+              "id": "prueba_redes",
+              "tipo": "text",
+              "titulo": "Publicación anónima",
+              "descripcion": "A las 7:00h alguien publicó una foto de la estatua: «Arte para todos. La ciudad debe respirar color. #SinFirma». Cuenta anónima, pero el teléfono tenía cobertura solo del barrio norte.",
+              "imagen": null
+            },
+            {
+              "id": "prueba_manchas",
+              "tipo": "text",
+              "titulo": "Manchas de pintura",
+              "descripcion": "Análisis de chaquetas: la de Carla tiene pintura del mismo lote que la usada en la estatua. La de Nuria tiene pintura de otro tipo. La del Sr. Obed está limpia.",
+              "imagen": null
+            }
+          ],
+          "pistas": [
+            "El ticket de la Ferretería del Sur estaba junto a la estatua. La pintura fue comprada allí a las 23:10h.",
+            "Solo la chaqueta de Carla tiene pintura del mismo lote que la estatua. Eso es evidencia directa.",
+            "Nuria tiene pintura diferente, probablemente de clase. El Sr. Obed no tiene manchas ni vínculo con el arte.",
+            "La publicación anónima habla de 'arte y color' y se hizo desde el barrio norte, donde vive Carla.",
+            "Una artista callejera pintaría como protesta artística, no para hacer publicidad de un negocio.",
+            "Carla: manchas del mismo lote, vive en el barrio norte, es artista. Todo encaja."
+          ],
+          "solucion": { "quien": "carla", "donde": "ferreteria_sur", "que": "protesta" },
+          "feedback_ok": "¡Caso cerrado! Carla pintó la estatua como protesta artística, comprando la pintura en la Ferretería del Sur a las 23:10. ¡Deducción impecable!",
+          "feedback_ko": "Las manchas de pintura son la clave. ¡Vuelve a las pruebas!"
+        },
+        {
+          "id": "caso_robot",
+          "titulo": "El Robot Desaparecido",
+          "meta": "Encuentra quién se llevó el robot, adónde lo llevó y por qué.",
+          "dificultad": 2,
+          "historia": [
+            "NICO, el robot educativo del colegio Estrella del Norte, ha desaparecido del laboratorio. Visto por última vez el viernes por la tarde.",
+            "Tres personas con acceso: Félix el profesor de robótica, Sonia la estudiante, y el Sr. Garrido de mantenimiento.",
+            "El robot necesita una tarjeta especial para encenderse. Alguien tenía un plan muy concreto."
+          ],
+          "quien": [
+            { "id": "felix", "nombre": "Félix", "atributos": { "cargo": "profesor", "tarjeta": "nº 1", "pelo": "barba" } },
+            { "id": "sonia", "nombre": "Sonia", "atributos": { "cargo": "estudiante", "tarjeta": "nº 3", "pelo": "coleta" } },
+            { "id": "garrido", "nombre": "Sr. Garrido", "atributos": { "cargo": "mantenimiento", "tarjeta": "ninguna", "pelo": "gris" } }
+          ],
+          "donde": [
+            { "id": "casa_felix", "nombre": "Casa Félix" },
+            { "id": "garaje", "nombre": "Garaje cole" },
+            { "id": "club_robotica", "nombre": "Club robótica" }
+          ],
+          "que": [
+            { "id": "reparar", "nombre": "Repararlo" },
+            { "id": "competicion", "nombre": "Competición" },
+            { "id": "vender", "nombre": "Venderlo" }
+          ],
+          "pruebas": [
+            {
+              "id": "prueba_tarjeta",
+              "tipo": "text",
+              "titulo": "Registro de tarjetas",
+              "descripcion": "El viernes a las 18:45 se usó la tarjeta nº 3 para encender a NICO. La tarjeta nº 3 pertenece a Sonia.",
+              "imagen": null
+            },
+            {
+              "id": "prueba_inscripcion",
+              "tipo": "text",
+              "titulo": "Formulario de torneo",
+              "descripcion": "En la mochila de Sonia: formulario del Torneo Regional de Robótica. Campo 'Robot participante': «NICO - Colegio Estrella del Norte». Fecha: el próximo sábado.",
+              "imagen": null
+            },
+            {
+              "id": "prueba_camara",
+              "tipo": "text",
+              "titulo": "Cámara exterior",
+              "descripcion": "La cámara grabó a alguien con coleta y mochila grande saliendo a las 19:00 con un objeto voluminoso tapado, dirigiéndose hacia el barrio este, donde está el club de robótica.",
+              "imagen": null
+            }
+          ],
+          "pistas": [
+            "La tarjeta nº 3 encendió a NICO el viernes. Esa tarjeta solo la tiene Sonia.",
+            "El formulario en su mochila: quería llevar a NICO al Torneo Regional del sábado.",
+            "La cámara grabó a alguien con coleta hacia el barrio este. Sonia tiene coleta y el club está en el barrio este.",
+            "Félix habría usado su tarjeta nº 1. El Sr. Garrido no tiene tarjeta de laboratorio.",
+            "Tarjeta, formulario, cámara: todo apunta a Sonia y al club de robótica."
+          ],
+          "solucion": { "quien": "sonia", "donde": "club_robotica", "que": "competicion" },
+          "feedback_ok": "¡Extraordinario! Sonia se llevó a NICO al club de robótica para el Torneo Regional. ¡Quería ganar con el mejor robot del colegio!",
+          "feedback_ko": "La tarjeta y el formulario son las claves. ¡Inténtalo de nuevo!"
+        }
+      ]
+    }
+  ]
+}

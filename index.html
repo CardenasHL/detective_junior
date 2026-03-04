@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detective Junior 🔍</title>
+  <meta name="description" content="Juego de deducción tipo logic grid puzzle para niños de 6 a 12 años.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header id="header" role="banner">
+    <a id="header-logo" href="#" aria-label="Ir al inicio">
+      <span class="logo-icon">🔍</span>
+      <span class="logo-texto">Detective Junior</span>
+    </a>
+
+  </header>
+
+  <!-- ===== PANTALLA: CARGANDO ===== -->
+  <div id="pantalla-cargando" class="pantalla activa" style="flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 56px);padding:40px 20px;">
+    <div class="loading-spinner"></div>
+    <p class="loading-texto">Cargando los casos...</p>
+  </div>
+
+  <!-- ===== PANTALLA: HOME ===== -->
+  <main id="pantalla-home" class="pantalla" role="main">
+    <div class="home-tarjeta">
+      <div class="home-lineas" aria-hidden="true"></div>
+      <img src="Recurso_2.png" class="home-emblema" alt="Detective Junior">
+      <h1 class="home-titulo">Detective Junior</h1>
+      <p class="home-subtitulo">¡Tu cuaderno de casos te espera, detective!</p>
+      <button id="btn-empezar" class="btn-primario">
+        🔎 ¡Empezar a investigar!
+      </button>
+    </div>
+  </main>
+
+  <!-- ===== PANTALLA: PAQUETES ===== -->
+  <section id="pantalla-paquetes" class="pantalla" aria-label="Selección de paquete de casos">
+    <div style="padding:32px 24px;max-width:900px;margin:0 auto;">
+      <button id="btn-volver-home" class="btn-secundario" style="margin-bottom:20px;">
+        ← Inicio
+      </button>
+      <h2 class="seccion-titulo">📦 Elige tu paquete de casos</h2>
+      <p class="seccion-subtitulo">Cada paquete contiene varios misterios para resolver.</p>
+      <div id="paquetes-grid" class="paquetes-grid"></div>
+    </div>
+  </section>
+
+  <!-- ===== PANTALLA: CASOS ===== -->
+  <section id="pantalla-casos" class="pantalla" aria-label="Selección de caso">
+    <div style="padding:32px 24px;max-width:900px;margin:0 auto;">
+      <button id="btn-volver-paquetes" class="btn-secundario" style="margin-bottom:20px;">
+        ← Paquetes
+      </button>
+      <h2 id="casos-titulo" class="seccion-titulo">📁 Casos disponibles</h2>
+      <p class="seccion-subtitulo">Elige un caso para comenzar la investigación.</p>
+      <div id="casos-grid" class="casos-grid"></div>
+    </div>
+  </section>
+
+  <!-- ===== PANTALLA: CASO (INVESTIGACIÓN) ===== -->
+  <section id="pantalla-caso" class="pantalla" aria-label="Pantalla de investigación del caso" style="flex-direction:column;min-height:calc(100vh - 56px);">
+
+    <div class="caso-layout">
+
+      <!-- ==== PANEL IZQUIERDO: LIBRO DEL CASO ==== -->
+      <aside class="panel-libro" aria-label="Libro del caso">
+        <div class="libro-contenido">
+
+          <!-- Sello resuelto -->
+          <div id="caso-sello-resuelto" class="sello-resuelto oculto" aria-label="Caso resuelto">✔ RESUELTO</div>
+
+          <!-- Encabezado caso -->
+          <div class="caso-encabezado">
+            <div id="caso-dificultad-badge" class="caso-badge-dificultad" aria-label="Dificultad del caso"></div>
+            <h2 id="caso-titulo" class="caso-titulo-principal"></h2>
+            <p id="caso-meta" class="caso-meta"></p>
+          </div>
+
+          <!-- Historia -->
+          <div class="libro-seccion">
+            <h3 class="libro-seccion-titulo">📖 Historia</h3>
+            <div id="caso-historia"></div>
+          </div>
+
+          <!-- Fichas de personajes -->
+          <div class="libro-seccion">
+            <h3 class="libro-seccion-titulo" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+              <span>🃏 Fichas</span>
+              <button id="btn-pruebas-fichas" class="btn-pruebas-inline">
+                🗂️ Ver pruebas
+              </button>
+            </h3>
+
+            <h4 style="font-size:0.82rem;color:var(--color-texto-suave);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">
+              👤 Sospechosos
+            </h4>
+            <div id="fichas-quien" class="fichas-grid" style="margin-bottom:16px;"></div>
+
+            <h4 style="font-size:0.82rem;color:var(--color-texto-suave);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">
+              📍 Lugares
+            </h4>
+            <div id="fichas-donde" class="fichas-grid" style="margin-bottom:16px;"></div>
+
+            <h4 style="font-size:0.82rem;color:var(--color-texto-suave);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">
+              💡 Intenciones
+            </h4>
+            <div id="fichas-que" class="fichas-grid"></div>
+          </div>
+
+          <!-- Pistas reveladas -->
+          <div class="libro-seccion">
+            <h3 class="libro-seccion-titulo">🗝️ Pistas del caso</h3>
+            <p id="pistas-contador" class="pistas-contador">Pistas reveladas: 0 / ?</p>
+            <div id="pistas-lista" role="list" aria-label="Lista de pistas reveladas"></div>
+            <div id="pistas-agotadas" class="pistas-agotadas oculto">
+              ✅ ¡Has revelado todas las pistas disponibles!
+            </div>
+          </div>
+
+          <!-- Acciones del libro -->
+          <div class="libro-acciones">
+            <button id="btn-revelar-pista" class="btn-primario">
+              🔍 Revelar pista
+            </button>
+            <button id="btn-resolver" class="btn-verde btn-resolver-pulso">
+              ✅ Resolver caso
+            </button>
+            <button id="btn-reiniciar-caso" class="btn-peligro">
+              🔄 Reiniciar
+            </button>
+          </div>
+
+          <!-- Botón volver a casos -->
+          <div style="margin-top:16px;">
+            <button class="btn-secundario" onclick="mostrarPantalla('casos'); renderizarCasos(estado.paqueteActual);">
+              ← Volver a los casos
+            </button>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- ==== PANEL DERECHO: CUADERNO / CUADRÍCULA ==== -->
+      <aside class="panel-cuaderno" aria-label="Cuaderno del detective y cuadrícula lógica">
+
+        <h3 class="cuaderno-titulo">📓 Cuaderno del detective</h3>
+        <p class="cuaderno-subtitulo">Marca tus deducciones en la cuadrícula</p>
+
+        <!-- Leyenda -->
+        <div class="leyenda-grid" aria-label="Leyenda de la cuadrícula">
+          <div class="leyenda-item">
+            <div class="leyenda-simbolo check">✔</div>
+            <span>Sí, coincide</span>
+          </div>
+          <div class="leyenda-item">
+            <div class="leyenda-simbolo cruz">✖</div>
+            <span>No coincide</span>
+          </div>
+          <div class="leyenda-item">
+            <div class="leyenda-simbolo vacio">·</div>
+            <span>Sin marcar</span>
+          </div>
+        </div>
+
+        <!-- Toggle ayuda automática -->
+        <label class="toggle-ayuda" for="toggle-ayuda-auto">
+          <input type="checkbox" id="toggle-ayuda-auto" checked>
+          <span>Ayuda automática: al marcar ✔, marca ✖ en el resto de fila/columna</span>
+        </label>
+
+        <!-- Cuadrícula unificada estilo Murdle -->
+        <div class="cuadricula-bloque">
+          <div class="cuadricula-bloque-titulo">👤 QUIÉN · 📍 DÓNDE · 💡 QUÉ</div>
+          <div id="tabla-unificada" role="group" aria-label="Cuadrícula lógica unificada" style="overflow-x:auto;"></div>
+        </div>
+
+        <!-- Resumen pistas en cuaderno -->
+        <div class="cuaderno-pistas-resumen">
+          <h4>Notas del caso</h4>
+          <ul id="cuaderno-pistas-lista" class="cuaderno-pistas-lista" aria-label="Resumen de pistas reveladas"></ul>
+        </div>
+
+      </aside>
+    </div>
+
+  </section>
+
+  <!-- ===== PANTALLA: ERROR ===== -->
+  <section id="pantalla-error" class="pantalla" aria-label="Pantalla de error">
+    <div id="pantalla-error-contenido" style="padding:40px 24px;max-width:600px;margin:0 auto;text-align:center;color:white;">
+      <span class="error-icono" aria-hidden="true">⚠️</span>
+      <div class="error-caja">
+        <h2>Algo salió mal</h2>
+        <p id="error-mensaje">Error desconocido.</p>
+        <p style="margin-top:14px;font-size:0.85rem;color:rgba(255,255,255,0.5);">
+          Recuerda que el juego debe servirse desde un servidor HTTP local (por ejemplo con
+          <code>python -m http.server</code> o Live Server de VS Code), no abriéndolo directamente como archivo.
+        </p>
+        <button onclick="location.reload()" class="btn-primario" style="margin-top:20px;">
+          🔄 Reintentar
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===========================
+       MODALES
+       =========================== -->
+
+  <!-- Modal: Carpeta de Pruebas -->
+  <div id="modal-pruebas" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-pruebas-titulo">
+    <div class="modal-caja">
+      <div class="modal-encabezado">
+        <h2 id="modal-pruebas-titulo">📁 Carpeta de Pruebas</h2>
+        <button id="modal-pruebas-cerrar" class="modal-cerrar" aria-label="Cerrar modal de pruebas">✕</button>
+      </div>
+      <div id="pruebas-lista" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <!-- Modal: Resolver caso -->
+  <div id="modal-resolver" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-resolver-titulo">
+    <div class="modal-caja">
+      <div class="modal-encabezado">
+        <h2 id="modal-resolver-titulo">🔎 ¡Hora de resolver el caso!</h2>
+        <button id="modal-resolver-cerrar" class="modal-cerrar" aria-label="Cerrar modal de resolución">✕</button>
+      </div>
+      <p class="resolver-instruccion">
+        Basándote en las pistas y las pruebas, ¿quién es el culpable, dónde actuó y cuál fue su motivo?
+      </p>
+
+      <div class="resolver-campo">
+        <label for="select-quien">🕵️ ¿Quién fue?</label>
+        <select id="select-quien" aria-required="true">
+          <option value="">-- Elige --</option>
+        </select>
+      </div>
+
+      <div class="resolver-campo">
+        <label for="select-donde">📍 ¿Dónde?</label>
+        <select id="select-donde" aria-required="true">
+          <option value="">-- Elige --</option>
+        </select>
+      </div>
+
+      <div class="resolver-campo">
+        <label for="select-que">💡 ¿Por qué / con qué intención?</label>
+        <select id="select-que" aria-required="true">
+          <option value="">-- Elige --</option>
+        </select>
+      </div>
+
+      <p id="resolver-feedback" style="display:none;font-size:0.9rem;margin-top:8px;" aria-live="assertive"></p>
+
+      <div class="resolver-acciones">
+        <button id="btn-confirmar-resolucion" class="btn-verde">
+          ✅ ¡Confirmar solución!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Resultado -->
+  <div id="modal-resultado" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="resultado-titulo">
+    <div class="modal-caja" style="text-align:center;">
+      <div class="modal-encabezado" style="justify-content:flex-end;border:none;margin-bottom:0;padding-bottom:0;">
+        <button id="modal-resultado-cerrar" class="modal-cerrar" aria-label="Cerrar modal de resultado">✕</button>
+      </div>
+      <span id="resultado-icono" class="resultado-icono" aria-hidden="true">🏆</span>
+      <h2 id="resultado-titulo" class="resultado-titulo ok">¡CASO RESUELTO!</h2>
+      <p id="resultado-texto" class="resultado-texto"></p>
+      <div id="resultado-detalle" class="resultado-solucion-detalle" style="display:none;text-align:left;"></div>
+      <button id="btn-resultado-continuar" class="btn-primario" style="margin-top:16px;">
+        📁 Ver otros casos
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
