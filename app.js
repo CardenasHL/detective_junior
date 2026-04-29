@@ -521,7 +521,7 @@ function renderizarCuadricula(caso) {
   var thQue = document.createElement('th');
   thQue.colSpan = que.length;
   thQue.className = 'th-grupo th-grupo-que';
-  thQue.textContent = '💡 QUÉ';
+  thQue.textContent = '💡POR QUÉ';
   trGrupo.appendChild(thQue);
 
   thead.appendChild(trGrupo);
