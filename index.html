@@ -16,7 +16,6 @@
       <span class="logo-icon">🔍</span>
       <span class="logo-texto">Detective Junior</span>
     </a>
-
   </header>
 
   <!-- ===== PANTALLA: CARGANDO ===== -->
@@ -81,40 +80,49 @@
             <p id="caso-meta" class="caso-meta"></p>
           </div>
 
-          <!-- Historia -->
-          <div class="libro-seccion">
-            <h3 class="libro-seccion-titulo">📖 Historia</h3>
-            <div id="caso-historia"></div>
+          <!-- Historia: visible por defecto, minimizable -->
+          <div class="libro-seccion" id="seccion-historia">
+            <h3 class="libro-seccion-titulo seccion-titulo-toggle" id="toggle-historia">
+              <span>📖 Historia</span>
+              <button class="btn-minimizar" id="btn-minimizar-historia" aria-expanded="true" aria-controls="caso-historia-wrap">
+                <span class="minimizar-texto">Minimizar</span> ▲
+              </button>
+            </h3>
+            <div id="caso-historia-wrap">
+              <div id="caso-historia"></div>
+              <div style="text-align:center;margin-top:20px;">
+                <button id="btn-a-investigar" class="btn-primario">
+                  🔍 ¡A investigar!
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pruebas: acordeón, encima de fichas -->
+          <div class="libro-seccion" id="seccion-pruebas">
+            <h3 class="libro-seccion-titulo seccion-titulo-toggle" id="toggle-pruebas">
+              <span>🗂️ Pruebas</span>
+              <button class="btn-minimizar" id="btn-toggle-pruebas" aria-expanded="false" aria-controls="pruebas-acordeon">
+                <span class="minimizar-texto">Ver todas</span> ▼
+              </button>
+            </h3>
+            <div id="pruebas-acordeon" class="pruebas-acordeon" aria-hidden="true"></div>
           </div>
 
           <!-- Fichas de personajes -->
-          <div class="libro-seccion">
-            <h3 class="libro-seccion-titulo" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-              <span>🃏 Fichas</span>
-              <button id="btn-pruebas-fichas" class="btn-pruebas-inline">
-                🗂️ Ver pruebas
-              </button>
-            </h3>
-
-            <h4 style="font-size:0.82rem;color:var(--color-texto-suave);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">
-              👤 Sospechosos
-            </h4>
+          <div class="libro-seccion" id="seccion-fichas">
+            <h3 class="libro-seccion-titulo">🃏 Fichas</h3>
+            <h4 class="fichas-subtitulo">👤 Sospechosos</h4>
             <div id="fichas-quien" class="fichas-grid" style="margin-bottom:16px;"></div>
-
-            <h4 style="font-size:0.82rem;color:var(--color-texto-suave);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">
-              📍 Lugares
-            </h4>
+            <h4 class="fichas-subtitulo">📍 Lugares</h4>
             <div id="fichas-donde" class="fichas-grid" style="margin-bottom:16px;"></div>
-
-            <h4 style="font-size:0.82rem;color:var(--color-texto-suave);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">
-              💡 Intenciones
-            </h4>
+            <h4 class="fichas-subtitulo">💡 Intenciones</h4>
             <div id="fichas-que" class="fichas-grid"></div>
           </div>
 
           <!-- Pistas reveladas -->
-          <div class="libro-seccion">
-            <h3 class="libro-seccion-titulo">🗝️ Pistas del caso</h3>
+          <div class="libro-seccion" id="seccion-pistas">
+            <h3 class="libro-seccion-titulo">🗝️ Pistas</h3>
             <p id="pistas-contador" class="pistas-contador">Pistas reveladas: 0 / ?</p>
             <div id="pistas-lista" role="list" aria-label="Lista de pistas reveladas"></div>
             <div id="pistas-agotadas" class="pistas-agotadas oculto">
@@ -124,11 +132,11 @@
 
           <!-- Acciones del libro -->
           <div class="libro-acciones">
-            <button id="btn-revelar-pista" class="btn-primario">
-              🔍 Revelar pista
-            </button>
             <button id="btn-resolver" class="btn-verde btn-resolver-pulso">
               ✅ Resolver caso
+            </button>
+            <button id="btn-revelar-pista" class="btn-secundario">
+              🗝️ Revelar pista
             </button>
             <button id="btn-reiniciar-caso" class="btn-peligro">
               🔄 Reiniciar
@@ -197,7 +205,7 @@
       <div class="error-caja">
         <h2>Algo salió mal</h2>
         <p id="error-mensaje">Error desconocido.</p>
-        <p style="margin-top:14px;font-size:0.85rem;color:rgba(255,255,255,0.5);">
+        <p style="margin-top:14px;font-size:0.85rem;color:var(--color-texto-muy-suave);">
           Recuerda que el juego debe servirse desde un servidor HTTP local (por ejemplo con
           <code>python -m http.server</code> o Live Server de VS Code), no abriéndolo directamente como archivo.
         </p>
@@ -212,17 +220,6 @@
   <!-- ===========================
        MODALES
        =========================== -->
-
-  <!-- Modal: Carpeta de Pruebas -->
-  <div id="modal-pruebas" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-pruebas-titulo">
-    <div class="modal-caja">
-      <div class="modal-encabezado">
-        <h2 id="modal-pruebas-titulo">📁 Carpeta de Pruebas</h2>
-        <button id="modal-pruebas-cerrar" class="modal-cerrar" aria-label="Cerrar modal de pruebas">✕</button>
-      </div>
-      <div id="pruebas-lista" aria-live="polite"></div>
-    </div>
-  </div>
 
   <!-- Modal: Resolver caso -->
   <div id="modal-resolver" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-resolver-titulo">

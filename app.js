@@ -108,17 +108,20 @@ function inicializarUI() {
     renderizarPaquetes();
   });
 
-  // Botón pruebas inline (junto a Fichas) - se conecta al renderizar el caso
+  // Tutorial: listeners de historia y pruebas acordeón (delegados)
   document.addEventListener('click', function(e) {
-    if (e.target && e.target.id === 'btn-pruebas-fichas') {
-      abrirModalPruebas();
+    if (e.target && (e.target.id === 'btn-minimizar-historia' || e.target.closest('#btn-minimizar-historia'))) {
+      toggleHistoria();
+    }
+    if (e.target && (e.target.id === 'btn-toggle-pruebas' || e.target.closest('#btn-toggle-pruebas'))) {
+      togglePruebas();
+    }
+    if (e.target && (e.target.id === 'btn-a-investigar')) {
+      minimizarHistoria();
     }
   });
 
   // Cerrar modales con overlay
-  document.getElementById('modal-pruebas').addEventListener('click', function(e) {
-    if (e.target === this) { cerrarModal('modal-pruebas'); }
-  });
   document.getElementById('modal-resolver').addEventListener('click', function(e) {
     if (e.target === this) { cerrarModal('modal-resolver'); }
   });
@@ -127,9 +130,6 @@ function inicializarUI() {
   });
 
   // Cerrar modales con botón X
-  document.getElementById('modal-pruebas-cerrar').addEventListener('click', function() {
-    cerrarModal('modal-pruebas');
-  });
   document.getElementById('modal-resolver-cerrar').addEventListener('click', function() {
     cerrarModal('modal-resolver');
   });
@@ -314,6 +314,9 @@ function renderizarCaso(caso) {
     historiaContenedor.appendChild(p);
   }
 
+  // ---- PRUEBAS EN ACORDEÓN ----
+  renderizarPruebasAcordeon(caso);
+
   // ---- FICHAS PERSONAJES ----
   renderizarFichas(caso);
 
@@ -348,6 +351,20 @@ function renderizarCaso(caso) {
   btnPista.onclick = function() {
     revelarSiguientePista(caso);
   };
+
+  // ---- HISTORIA: mostrar completa al abrir, con botón minimizar ----
+  expandirHistoria();
+
+  // ---- PRUEBAS: expandidas por defecto ----
+  expandirPruebas();
+
+  // ---- TUTORIAL: mostrar si es paquete tutorial y no se ha visto ya ----
+  if (estado.paqueteActual && estado.paqueteActual.id === 'tutorial') {
+    var yaVioTutorial = localStorage.getItem('dj_tutorial_visto');
+    if (!yaVioTutorial) {
+      setTimeout(function() { abrirTutorial(); }, 400);
+    }
+  }
 }
 
 // ===================================
@@ -716,36 +733,273 @@ function aplicarAyudaAutomatica(caso, tipo, filaId, colId) {
 // ===================================
 // MODAL: PRUEBAS
 // ===================================
-function abrirModalPruebas() {
-  var caso = estado.casoActual;
-  var lista = document.getElementById('pruebas-lista');
-  lista.innerHTML = '';
+// ===================================
+// PRUEBAS EN ACORDEÓN (en panel izquierdo)
+// ===================================
+function renderizarPruebasAcordeon(caso) {
+  var contenedor = document.getElementById('pruebas-acordeon');
+  if (!contenedor) { return; }
+  contenedor.innerHTML = '';
 
   if (!caso.pruebas || caso.pruebas.length === 0) {
-    lista.innerHTML = '<p style="color:var(--color-texto-suave);font-style:italic;">Este caso no tiene pruebas físicas registradas.</p>';
-  } else {
-    for (var i = 0; i < caso.pruebas.length; i++) {
-      var pr = caso.pruebas[i];
-      var div = document.createElement('div');
-      div.className = 'prueba-item';
-
-      var contenidoImg = '';
-      if (pr.tipo === 'image' && pr.imagen) {
-        contenidoImg = '<img src="' + escapeHTML(pr.imagen) + '" alt="' + escapeHTML(pr.titulo) + '" class="prueba-imagen">';
-      } else if (pr.tipo === 'image') {
-        contenidoImg = '<div class="prueba-placeholder-img">🖼️</div>';
-      }
-
-      div.innerHTML =
-        '<h4>📌 ' + escapeHTML(pr.titulo) + '</h4>' +
-        '<p>' + escapeHTML(pr.descripcion) + '</p>' +
-        contenidoImg;
-
-      lista.appendChild(div);
-    }
+    contenedor.innerHTML = '<p style="color:var(--color-texto-suave);font-style:italic;padding:8px 0;">Este caso no tiene pruebas físicas registradas.</p>';
+    return;
   }
 
-  abrirModal('modal-pruebas');
+  for (var i = 0; i < caso.pruebas.length; i++) {
+    var pr = caso.pruebas[i];
+    var item = document.createElement('div');
+    item.className = 'prueba-acordeon-item';
+
+    var contenidoImg = '';
+    if (pr.tipo === 'image' && pr.imagen) {
+      contenidoImg = '<img src="' + escapeHTML(pr.imagen) + '" alt="' + escapeHTML(pr.titulo) + '" class="prueba-imagen">';
+    } else if (pr.tipo === 'image') {
+      contenidoImg = '<div class="prueba-placeholder-img">🖼️</div>';
+    }
+
+    var idCuerpo = 'prueba-cuerpo-' + i;
+    item.innerHTML =
+      '<button class="prueba-acordeon-cabecera" aria-expanded="true" aria-controls="' + idCuerpo + '">' +
+        '<span>📌 ' + escapeHTML(pr.titulo) + '</span>' +
+        '<span class="prueba-acordeon-flecha">▲</span>' +
+      '</button>' +
+      '<div class="prueba-acordeon-cuerpo" id="' + idCuerpo + '" aria-hidden="false" style="max-height:1000px;opacity:1;padding:12px 14px;">' +
+        '<p>' + escapeHTML(pr.descripcion).replace(/\n/g, '<br>') + '</p>' +
+        contenidoImg +
+      '</div>';
+
+    item.querySelector('.prueba-acordeon-cabecera').addEventListener('click', function() {
+      var cabecera = this;
+      var cuerpo = cabecera.nextElementSibling;
+      var abierto = cabecera.getAttribute('aria-expanded') === 'true';
+      cabecera.setAttribute('aria-expanded', abierto ? 'false' : 'true');
+      cuerpo.setAttribute('aria-hidden', abierto ? 'true' : 'false');
+      cuerpo.style.maxHeight = abierto ? '0' : cuerpo.scrollHeight + 'px';
+      cuerpo.style.opacity = abierto ? '0' : '1';
+      cabecera.querySelector('.prueba-acordeon-flecha').textContent = abierto ? '▼' : '▲';
+    });
+
+    contenedor.appendChild(item);
+  }
+}
+
+// ===================================
+// HISTORIA: EXPANDIR / MINIMIZAR
+// ===================================
+function expandirHistoria() {
+  var wrap = document.getElementById('caso-historia-wrap');
+  var btn = document.getElementById('btn-minimizar-historia');
+  if (!wrap || !btn) { return; }
+  wrap.style.display = 'block';
+  btn.setAttribute('aria-expanded', 'true');
+  btn.innerHTML = '<span class="minimizar-texto">Minimizar</span> ▲';
+}
+
+function minimizarHistoria() {
+  var wrap = document.getElementById('caso-historia-wrap');
+  var btn = document.getElementById('btn-minimizar-historia');
+  if (!wrap || !btn) { return; }
+  wrap.style.display = 'none';
+  btn.setAttribute('aria-expanded', 'false');
+  btn.innerHTML = '<span class="minimizar-texto">Ver historia</span> ▼';
+  // Hacer scroll suave hacia las pruebas
+  var seccionPruebas = document.getElementById('seccion-pruebas');
+  if (seccionPruebas) {
+    setTimeout(function() {
+      seccionPruebas.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+}
+
+function toggleHistoria() {
+  var wrap = document.getElementById('caso-historia-wrap');
+  if (!wrap) { return; }
+  if (wrap.style.display === 'none') {
+    expandirHistoria();
+  } else {
+    minimizarHistoria();
+  }
+}
+
+// ===================================
+// PRUEBAS ACORDEÓN: COLAPSAR / EXPANDIR SECCIÓN
+// ===================================
+function colapsarPruebas() {
+  var acordeon = document.getElementById('pruebas-acordeon');
+  var btn = document.getElementById('btn-toggle-pruebas');
+  if (!acordeon || !btn) { return; }
+  acordeon.setAttribute('aria-hidden', 'true');
+  acordeon.style.display = 'none';
+  btn.setAttribute('aria-expanded', 'false');
+  btn.innerHTML = '<span class="minimizar-texto">Ver todas</span> ▼';
+}
+
+function togglePruebas() {
+  var acordeon = document.getElementById('pruebas-acordeon');
+  var btn = document.getElementById('btn-toggle-pruebas');
+  if (!acordeon || !btn) { return; }
+  var oculto = acordeon.style.display === 'none' || acordeon.getAttribute('aria-hidden') === 'true';
+  if (oculto) {
+    acordeon.style.display = 'block';
+    acordeon.setAttribute('aria-hidden', 'false');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.innerHTML = '<span class="minimizar-texto">Ocultar</span> ▲';
+  } else {
+    colapsarPruebas();
+  }
+}
+
+// ===================================
+// TUTORIAL: TOOLTIPS ONBOARDING
+// ===================================
+var tooltipsPasos = [
+  {
+    ancla: 'caso-historia-wrap',
+    posicion: 'abajo',
+    texto: '📖 Empieza leyendo la historia. La Happy Pandi te presenta el misterio y los sospechosos.',
+    boton: 'Entendido →'
+  },
+  {
+    ancla: 'seccion-pruebas',
+    posicion: 'abajo',
+    texto: '🗂️ Aquí están las pruebas físicas del caso. ¡Son tu mejor herramienta! Léelas con atención.',
+    boton: 'Siguiente →'
+  },
+  {
+    ancla: 'seccion-fichas',
+    posicion: 'abajo',
+    texto: '🃏 Las fichas te muestran los datos de cada sospechoso. Fíjate en la altura, el pelo... ¡pueden ser clave!',
+    boton: 'Siguiente →'
+  },
+  {
+    ancla: 'tabla-unificada',
+    posicion: 'arriba',
+    texto: '📓 Usa esta cuadrícula para apuntar tus deducciones. Toca una celda: ✔ si coincide, ✖ si no. ¡Toca otra vez para borrar!',
+    boton: 'Siguiente →'
+  },
+  {
+    ancla: 'btn-revelar-pista',
+    posicion: 'arriba',
+    texto: '🗝️ Si te atascas, usa "Revelar pista". La Happy Pandi te ayudará paso a paso.',
+    boton: 'Siguiente →'
+  },
+  {
+    ancla: 'btn-resolver',
+    posicion: 'arriba',
+    texto: '✅ Cuando tengas la solución, pulsa aquí. ¡Indica quién fue, dónde y por qué!',
+    boton: '¡A resolver! 🔍'
+  }
+];
+
+var tooltipPasoActual = 0;
+var tooltipEl = null;
+var tooltipOverlayEl = null;
+
+function abrirTutorial() {
+  var yaVioTutorial = localStorage.getItem('dj_tutorial_visto');
+  if (yaVioTutorial) { return; }
+  tooltipPasoActual = 0;
+  mostrarTooltip(0);
+}
+
+function cerrarTutorial() {
+  quitarTooltip();
+  localStorage.setItem('dj_tutorial_visto', '1');
+}
+
+function cerrarTutorialBtn() {
+  cerrarTutorial();
+}
+
+function tooltipSiguiente() {
+  tooltipPasoActual++;
+  if (tooltipPasoActual >= tooltipsPasos.length) {
+    cerrarTutorial();
+  } else {
+    mostrarTooltip(tooltipPasoActual);
+  }
+}
+
+function quitarTooltip() {
+  if (tooltipEl && tooltipEl.parentNode) { tooltipEl.parentNode.removeChild(tooltipEl); }
+  if (tooltipOverlayEl && tooltipOverlayEl.parentNode) { tooltipOverlayEl.parentNode.removeChild(tooltipOverlayEl); }
+  tooltipEl = null;
+  tooltipOverlayEl = null;
+  // Quitar highlight de todos
+  var highlighted = document.querySelectorAll('.tutorial-highlight');
+  for (var i = 0; i < highlighted.length; i++) {
+    highlighted[i].classList.remove('tutorial-highlight');
+  }
+}
+
+function mostrarTooltip(pasoIdx) {
+  quitarTooltip();
+  var paso = tooltipsPasos[pasoIdx];
+  var ancla = document.getElementById(paso.ancla);
+  if (!ancla) { tooltipSiguiente(); return; }
+
+  // Scroll al elemento ancla
+  ancla.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  ancla.classList.add('tutorial-highlight');
+
+  // Overlay semitransparente
+  tooltipOverlayEl = document.createElement('div');
+  tooltipOverlayEl.className = 'tooltip-overlay';
+  document.body.appendChild(tooltipOverlayEl);
+
+  // Crear tooltip
+  tooltipEl = document.createElement('div');
+  tooltipEl.className = 'tooltip-onboarding tooltip-' + paso.posicion;
+
+  var progreso = (pasoIdx + 1) + ' / ' + tooltipsPasos.length;
+
+  tooltipEl.innerHTML =
+    '<div class="tooltip-progreso">' + progreso + '</div>' +
+    '<p class="tooltip-texto">' + paso.texto + '</p>' +
+    '<div class="tooltip-acciones">' +
+      '<button class="tooltip-btn-saltar" onclick="cerrarTutorialBtn()">Saltar tutorial</button>' +
+      '<button class="tooltip-btn-siguiente btn-primario" onclick="tooltipSiguiente()">' + paso.boton + '</button>' +
+    '</div>';
+
+  document.body.appendChild(tooltipEl);
+
+  // Posicionar después de render
+  setTimeout(function() {
+    var rect = ancla.getBoundingClientRect();
+    var scrollY = window.scrollY || window.pageYOffset;
+    var scrollX = window.scrollX || window.pageXOffset;
+    var ttW = tooltipEl.offsetWidth || 300;
+    var ttH = tooltipEl.offsetHeight || 120;
+    var margen = 12;
+
+    var left = rect.left + scrollX + (rect.width / 2) - (ttW / 2);
+    left = Math.max(12, Math.min(left, window.innerWidth - ttW - 12));
+
+    var top;
+    if (paso.posicion === 'abajo') {
+      top = rect.bottom + scrollY + margen;
+    } else {
+      top = rect.top + scrollY - ttH - margen;
+      if (top < scrollY + 12) { top = rect.bottom + scrollY + margen; }
+    }
+
+    tooltipEl.style.left = left + 'px';
+    tooltipEl.style.top = top + 'px';
+  }, 120);
+}
+
+// expand pruebas helper
+function expandirPruebas() {
+  var acordeon = document.getElementById('pruebas-acordeon');
+  var btn = document.getElementById('btn-toggle-pruebas');
+  if (!acordeon) { return; }
+  acordeon.style.display = 'block';
+  acordeon.setAttribute('aria-hidden', 'false');
+  if (btn) {
+    btn.setAttribute('aria-expanded', 'true');
+    btn.innerHTML = '<span class="minimizar-texto">Ocultar</span> ▲';
+  }
 }
 
 // ===================================

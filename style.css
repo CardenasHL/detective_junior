@@ -430,7 +430,7 @@ h4, h5, h6  { font-family: var(--font-cuerpo); font-weight: 800; }
 
 .caso-layout {
   display: grid;
-  grid-template-columns: 1fr 700px;
+  grid-template-columns: 1fr 620px;
   gap: 0;
   flex: 1;
   min-height: 0;
@@ -1264,4 +1264,361 @@ h4, h5, h6  { font-family: var(--font-cuerpo); font-weight: 800; }
 #pantalla-caso.activa ~ #header #btn-pruebas-header,
 .en-caso #btn-pruebas-header {
   display: none;
+}
+
+/* ===================================
+   HISTORIA: MINIMIZABLE
+   =================================== */
+.seccion-titulo-toggle {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn-minimizar {
+  background: var(--color-fondo);
+  border: 2px solid var(--color-papel-linea);
+  color: var(--color-texto-suave);
+  border-radius: var(--radio-pill);
+  font-family: var(--font-cuerpo);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background var(--transicion), border-color var(--transicion);
+  white-space: nowrap;
+}
+
+.btn-minimizar:hover {
+  background: var(--color-azul-claro);
+  border-color: var(--color-azul);
+  color: white;
+}
+
+/* ===================================
+   PRUEBAS: ACORDEÓN
+   =================================== */
+.pruebas-acordeon {
+  display: none;
+}
+
+.prueba-acordeon-item {
+  border: 2px solid var(--color-papel-linea);
+  border-radius: var(--radio);
+  margin-bottom: 8px;
+  overflow: hidden;
+  background: var(--color-papel);
+}
+
+.prueba-acordeon-cabecera {
+  width: 100%;
+  background: #eaf4ff;
+  border: none;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-family: var(--font-cuerpo);
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--color-azul-oscuro);
+  text-align: left;
+  transition: background var(--transicion);
+  gap: 8px;
+}
+
+.prueba-acordeon-cabecera:hover {
+  background: var(--color-fondo);
+}
+
+.prueba-acordeon-cabecera[aria-expanded="true"] {
+  background: var(--color-azul-claro);
+  color: white;
+}
+
+.prueba-acordeon-flecha {
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  transition: transform var(--transicion);
+}
+
+.prueba-acordeon-cuerpo {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  padding: 0 14px;
+}
+
+.prueba-acordeon-cuerpo[aria-hidden="false"] {
+  padding: 12px 14px;
+}
+
+.prueba-acordeon-cuerpo p {
+  font-size: 0.92rem;
+  color: var(--color-texto);
+  line-height: 1.7;
+  font-weight: 600;
+  white-space: pre-line;
+}
+
+/* ===================================
+   FICHAS: subtítulos
+   =================================== */
+.fichas-subtitulo {
+  font-size: 0.82rem;
+  color: var(--color-texto-suave);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===================================
+   TUTORIAL: MODAL
+   =================================== */
+.modal-tutorial-caja {
+  max-width: 480px;
+  padding: 36px 32px;
+  text-align: center;
+  border-top: 8px solid var(--color-azul);
+}
+
+.tutorial-paso {
+  display: none;
+  animation: fade-in 0.2s ease;
+}
+
+.tutorial-paso.activo {
+  display: block;
+}
+
+.tutorial-icono-grande {
+  font-size: 64px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.tutorial-titulo {
+  font-size: 1.5rem;
+  color: var(--color-azul-oscuro);
+  margin-bottom: 14px;
+}
+
+.tutorial-texto {
+  font-size: 1rem;
+  color: var(--color-texto-suave);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.tutorial-texto-pequeño {
+  font-size: 0.88rem;
+  color: var(--color-texto-suave);
+  line-height: 1.6;
+  margin-top: 12px;
+  margin-bottom: 16px;
+  font-family: var(--font-manuscrita);
+}
+
+.tutorial-ejemplo {
+  background: var(--color-fondo);
+  border-radius: var(--radio);
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  text-align: left;
+  border: 2px solid var(--color-papel-linea);
+}
+
+.tutorial-ejemplo-item {
+  font-size: 0.9rem;
+  color: var(--color-texto);
+  font-weight: 700;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--color-papel-linea);
+}
+
+.tutorial-ejemplo-item:last-child { border-bottom: none; }
+
+.tutorial-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tutorial-puntos {
+  display: flex;
+  gap: 6px;
+}
+
+.punto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-papel-linea);
+  transition: background var(--transicion);
+  display: inline-block;
+}
+
+.punto.activo {
+  background: var(--color-azul);
+}
+
+/* Demo cuadrícula del tutorial */
+.tutorial-cuadricula-demo {
+  background: white;
+  border: 2px solid var(--color-papel-linea);
+  border-radius: var(--radio);
+  overflow: hidden;
+  margin: 16px auto;
+  display: inline-block;
+  width: 100%;
+  max-width: 280px;
+}
+
+.demo-fila {
+  display: flex;
+}
+
+.demo-celda {
+  border: 1px solid var(--color-papel-linea);
+  padding: 8px 6px;
+  font-size: 0.8rem;
+  text-align: center;
+  flex: 1;
+  font-weight: 700;
+}
+
+.demo-esquina { background: transparent; border: none; flex: 1.5; }
+.demo-th  { background: var(--color-fondo); color: var(--color-azul-oscuro); font-size: 0.75rem; }
+.demo-label { background: #f0f7ff; color: var(--color-azul-oscuro); text-align: left; flex: 1.5; font-size: 0.78rem; }
+.demo-check { background: #d4f7e2; color: var(--color-verde); font-size: 1rem; }
+.demo-cruz  { background: #fde8e4; color: var(--color-acento); font-size: 1rem; }
+.demo-vacio { background: white; }
+.demo-cabecera .demo-celda { background: var(--color-fondo); font-weight: 800; }
+
+/* ===================================
+   TUTORIAL: TOOLTIPS ONBOARDING
+   =================================== */
+
+/* Overlay semitransparente detrás del tooltip */
+.tooltip-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 50, 90, 0.35);
+  z-index: 300;
+  pointer-events: none;
+}
+
+/* Tooltip flotante */
+.tooltip-onboarding {
+  position: absolute;
+  z-index: 400;
+  background: white;
+  border-radius: var(--radio-grande);
+  padding: 18px 20px 14px;
+  max-width: 320px;
+  min-width: 260px;
+  box-shadow: 0 8px 32px rgba(30,70,120,0.25), 0 0 0 3px var(--color-azul);
+  animation: tooltip-entrada 0.22s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+@keyframes tooltip-entrada {
+  from { opacity: 0; transform: scale(0.88) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Flechita */
+.tooltip-onboarding::before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border: 3px solid var(--color-azul);
+  border-right: none;
+  border-bottom: none;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.tooltip-abajo::before {
+  top: -8px;
+}
+
+.tooltip-arriba::before {
+  bottom: -8px;
+  transform: translateX(-50%) rotate(225deg);
+}
+
+.tooltip-progreso {
+  font-family: var(--font-titulo);
+  font-size: 0.75rem;
+  color: var(--color-azul-claro);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.tooltip-texto {
+  font-size: 0.95rem;
+  color: var(--color-texto);
+  line-height: 1.6;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.tooltip-acciones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.tooltip-btn-saltar {
+  background: none;
+  border: none;
+  color: var(--color-texto-muy-suave);
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: var(--font-cuerpo);
+  text-decoration: underline;
+  padding: 0;
+}
+
+.tooltip-btn-saltar:hover { color: var(--color-acento); }
+
+.tooltip-btn-siguiente {
+  padding: 8px 16px !important;
+  font-size: 0.85rem !important;
+}
+
+/* Elemento destacado por el tutorial */
+.tutorial-highlight {
+  position: relative;
+  z-index: 301;
+  border-radius: var(--radio);
+  outline: 3px solid var(--color-azul);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px rgba(58,143,214,0.2);
+  transition: outline 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Pruebas expandidas: sin max-height limit */
+.pruebas-acordeon[aria-hidden="false"] {
+  display: block !important;
+}
+
+.prueba-acordeon-cuerpo[aria-hidden="false"] {
+  max-height: 1000px !important;
+  opacity: 1 !important;
+  padding: 12px 14px !important;
 }
