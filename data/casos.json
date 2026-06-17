@@ -100,25 +100,23 @@
               "id": "prueba_nota",
               "tipo": "text",
               "titulo": "✉️ Nota anónima",
-              "descripcion": "Ana encontró una nota doblada junto al plato vacío y la leyó en voz alta:\n\n«Lo siento muchísimo. Llevaba tres días fuera sin comer nada decente y el olor era imposible de resistir. No pude evitarlo».\n\n—La letra está muy inclinada a la derecha —observó Victoria—. Y fijaos: la persona apoya mucho el lado derecho del bolígrafo. Eso lo hace la gente que escribe con la mano derecha.",
+              "descripcion": "Ana encontró una nota doblada junto al plato vacío y la leyó en voz alta:\n\n«Lo siento muchísimo. Llevaba tres días fuera sin comer nada decente y el olor era imposible de resistir. No pude evitarlo».",
               "imagen": null
             },
             {
-              "id": "prueba_confeti",
+              "id": "prueba_letra",
               "tipo": "text",
-              "titulo": "🎉 Frasco de confeti",
-              "descripcion": "Buscando en el laboratorio, Tao tropezó con un cubo y encontró un frasco de cristal con un resorte cargado y un montón de confeti comprimido. Llevaba una nota pegada: «Para asustar al Mayordomo cuando abra el armario. Edición especial — Prof. T.»\n\n—¡Es una trampa de broma! —exclamó Tao entre risas—. El Profesor estaba aquí montando esto, no robando tartas."
+              "titulo": "🖋️ Análisis de la letra",
+              "descripcion": "Victoria tomó la nota y la observó con atención.\n\n—Mirad cómo está escrita —dijo—. El bolígrafo se apoya mucho hacia el lado derecho, y las letras se inclinan en esa misma dirección. Así escriben las personas diestras, que usan la mano derecha."
             }
           ],
           "pistas": [
             "—Las migas amarillas llevan directo a la biblioteca —dijo Lola—. Quienquiera que tomó la tarta, la disfrutó entre libros.",
-            "—El estante está a 1,62 m —repitió Michael, repasando el informe de Pili—. El Profesor mide 1,58. ¡No llega! Él no pudo bajar la tarta del estante.",
-            "—¡Mirad esto! —dijo Tao sosteniendo el frasco de confeti—. El Profesor estaba aquí, en el Laboratorio, montando una broma para el Mayordomo. ¡Por eso no llegó a la tarta, estaba ocupado con esto!",
-            "—El Profesor: Laboratorio y Broma —resumió Victoria—. Ya tiene su lugar y su motivo. Sigamos con los demás.",
+            "—El estante está a 1,62 m —repitió Michael, repasando el informe de Pili—. El Profesor mide 1,58. ¡No llega! Él no pudo bajar la tarta del estante. Queda descartado.",
             "—La nota dice 'tres días fuera sin comer' —leyó Ana—. Eso es hambre de verdad, no una broma ni un plan para esconder algo. El motivo de quien la tomó es 'tenía hambre'.",
-            "—Y la persona que escribió la nota era diestra —añadió Victoria, mirando las fichas—. El Profesor es zurdo. La Baronesa también es zurda. ¡Solo la Agente Pomelo es diestra!",
-            "—Biblioteca, hambre, diestra... ¡todo apunta a la Agente Pomelo! —exclamó Michael dando un salto.",
-            "—Entonces a la Baronesa le queda el Jardín, y su motivo era... esconder algo —dedujo Alex sin dejar de dibujar—. ¿Qué escondería una baronesa en un jardín? Eso ya es otro misterio.\n—Yo solo quería preguntar si queda algo de tarta —dijo Tao."
+            "—Y mirad cómo está escrita —añadió Victoria, examinando el papel—. El bolígrafo se inclina mucho hacia la derecha. Así escriben las personas diestras.",
+            "—El Profesor ya estaba descartado, y además es zurdo —dijo Michael—. La Baronesa también es zurda. ¡Solo la Agente Pomelo es diestra!",
+            "—Biblioteca, hambre, diestra... ¡todo apunta a la Agente Pomelo! —exclamó Michael dando un salto.\n—Yo solo quería preguntar si queda algo de tarta —dijo Tao."
           ],
           "solucion": {
             "quien": "agente",
