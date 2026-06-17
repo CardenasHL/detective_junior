@@ -25,28 +25,61 @@
             {
               "id": "baronesa",
               "nombre": "La Baronesa",
-              "atributos": { "altura": "1,72 m", "mano buena": "diestra", "ojos": "marrones", "pelo": "rizado negro" }
+              "atributos": {
+                "altura": "1,72 m",
+                "mano buena": "zurda",
+                "ojos": "marrones",
+                "pelo": "rizado negro"
+              }
             },
             {
               "id": "profesor",
               "nombre": "El Profesor",
-              "atributos": { "altura": "1,58 m", "mano buena": "zurdo", "ojos": "azules", "pelo": "blanco escaso" }
+              "atributos": {
+                "altura": "1,58 m",
+                "mano buena": "zurdo",
+                "ojos": "azules",
+                "pelo": "blanco escaso"
+              }
             },
             {
               "id": "agente",
               "nombre": "La Agente",
-              "atributos": { "altura": "1,65 m", "mano buena": "diestra", "ojos": "verdes", "pelo": "liso castaño" }
+              "atributos": {
+                "altura": "1,65 m",
+                "mano buena": "diestra",
+                "ojos": "verdes",
+                "pelo": "liso castaño"
+              }
             }
           ],
           "donde": [
-            { "id": "biblioteca", "nombre": "Biblioteca" },
-            { "id": "laboratorio", "nombre": "Laboratorio" },
-            { "id": "jardin", "nombre": "Jardín" }
+            {
+              "id": "biblioteca",
+              "nombre": "Biblioteca"
+            },
+            {
+              "id": "laboratorio",
+              "nombre": "Laboratorio"
+            },
+            {
+              "id": "jardin",
+              "nombre": "Jardín"
+            }
           ],
           "que": [
-            { "id": "hambre", "nombre": "Tenía hambre" },
-            { "id": "broma", "nombre": "Gastar broma" },
-            { "id": "esconder", "nombre": "Ocultar algo" }
+            {
+              "id": "hambre",
+              "nombre": "Tenía hambre"
+            },
+            {
+              "id": "broma",
+              "nombre": "Gastar broma"
+            },
+            {
+              "id": "esconder",
+              "nombre": "Ocultar algo"
+            }
           ],
           "pruebas": [
             {
@@ -57,6 +90,13 @@
               "imagen": null
             },
             {
+              "id": "prueba_estante",
+              "tipo": "text",
+              "titulo": "📏 Informe del Conde",
+              "descripcion": "El Conde Polvoriento explicó entre sollozos que había guardado la tarta en el tercer estante de la despensa para que nadie la viera. Luego Pili midió:\n\n«Tercer estante: a 1,62 metros del suelo. Para alcanzarlo sin taburete hace falta medir más de 1,62 m».\n\n—Quien la tomara, debía medir más de eso para alcanzarla sin subirse a nada —concluyó Pili.",
+              "imagen": null
+            },
+            {
               "id": "prueba_nota",
               "tipo": "text",
               "titulo": "✉️ Nota anónima",
@@ -64,23 +104,27 @@
               "imagen": null
             },
             {
-              "id": "prueba_estante",
+              "id": "prueba_confeti",
               "tipo": "text",
-              "titulo": "📏 Informe del Conde",
-              "descripcion": "El Conde Polvoriento explicó entre sollozos que había guardado la tarta en el tercer estante de la despensa para que nadie la viera. Luego Pili midió:\n\n«Tercer estante: a 1,62 metros del suelo. Para alcanzarlo sin taburete hace falta medir más de 1,62 m».\n\n—O sea que solo la Baronesa llega —dijo Michael contando con los dedos—. Ella mide 1,72. Las otras dos no.",
-              "imagen": null
+              "titulo": "🎉 Frasco de confeti",
+              "descripcion": "Buscando en el laboratorio, Tao tropezó con un cubo y encontró un frasco de cristal con un resorte cargado y un montón de confeti comprimido. Llevaba una nota pegada: «Para asustar al Mayordomo cuando abra el armario. Edición especial — Prof. T.»\n\n—¡Es una trampa de broma! —exclamó Tao entre risas—. El Profesor estaba aquí montando esto, no robando tartas."
             }
           ],
           "pistas": [
-            "—Las migas amarillas llevan directo a la biblioteca —dijo Lola—. Quienquiera que tomó la tarta, la disfrutó entre libros. Podemos marcar ✔ en Biblioteca para quien la tomó y ✖ en los otros lugares.",
-            "—Espera —dijo Victoria—. Aún no sabemos quién fue. Sigamos. La nota dice 'tres días fuera sin comer'. Eso no es una broma ni un plan para esconder algo. Es hambre de verdad. Así que el motivo es 'tenía hambre'.",
-            "—El estante está a 1,62 m —repitió Michael—. El Profesor mide 1,58. ¡No llega! Podemos poner ✖ para el Profesor en todos los lugares. Él no pudo tomar la tarta.",
-            "—Y la nota —continuó Victoria mirando a los demás—. Está escrita inclinando el bolígrafo hacia la derecha, como hacen las personas diestras. El Profesor es zurdo. Eso lo confirma: no fue él.",
-            "—Entonces quedan la Baronesa y la Agente —dijo Alex sin dejar de dibujar—. La Baronesa mide 1,72 y llega al estante. La Agente mide 1,65 y también llega. Las dos podrían haber cogido la tarta.",
-            "—Pero la nota habla de 'tres días fuera sin comer' —recordó Ana—. La Baronesa vive en la mansión. Nunca estuvo 'fuera'. En cambio... —se ajustó las gafas— ...la Agente Pomelo estuvo tres días en una misión secreta. ¡Ella es!",
-            "—Biblioteca, hambre, la Agente —resumió Victoria despacio—. Las migas, la nota, el estante... todo apunta al mismo lugar. —Se giró hacia los demás—. ¿Alguien no está de acuerdo?\n—Yo solo quería preguntar si queda algo de tarta —dijo Tao."
+            "—Las migas amarillas llevan directo a la biblioteca —dijo Lola—. Quienquiera que tomó la tarta, la disfrutó entre libros.",
+            "—El estante está a 1,62 m —repitió Michael, repasando el informe de Pili—. El Profesor mide 1,58. ¡No llega! Él no pudo bajar la tarta del estante.",
+            "—¡Mirad esto! —dijo Tao sosteniendo el frasco de confeti—. El Profesor estaba aquí, en el Laboratorio, montando una broma para el Mayordomo. ¡Por eso no llegó a la tarta, estaba ocupado con esto!",
+            "—El Profesor: Laboratorio y Broma —resumió Victoria—. Ya tiene su lugar y su motivo. Sigamos con los demás.",
+            "—La nota dice 'tres días fuera sin comer' —leyó Ana—. Eso es hambre de verdad, no una broma ni un plan para esconder algo. El motivo de quien la tomó es 'tenía hambre'.",
+            "—Y la persona que escribió la nota era diestra —añadió Victoria, mirando las fichas—. El Profesor es zurdo. La Baronesa también es zurda. ¡Solo la Agente Pomelo es diestra!",
+            "—Biblioteca, hambre, diestra... ¡todo apunta a la Agente Pomelo! —exclamó Michael dando un salto.",
+            "—Entonces a la Baronesa le queda el Jardín, y su motivo era... esconder algo —dedujo Alex sin dejar de dibujar—. ¿Qué escondería una baronesa en un jardín? Eso ya es otro misterio.\n—Yo solo quería preguntar si queda algo de tarta —dijo Tao."
           ],
-          "solucion": { "quien": "agente", "donde": "biblioteca", "que": "hambre" },
+          "solucion": {
+            "quien": "agente",
+            "donde": "biblioteca",
+            "que": "hambre"
+          },
           "feedback_ok": "¡BRILLANTE! La Agente Pomelo llevaba tres días en misión sin probar bocado. Al volver a la mansión, el olor de la tarta fue irresistible. Se la llevó a la Biblioteca para comérsela en paz entre sus libros favoritos. ¡La Happy Pandi resuelve su primer caso!",
           "feedback_ko": "—Mmm, algo no cuadra —murmuró Victoria frunciendo el ceño—. Revisa el estante y la nota. ¿Quién llevaba días fuera? ¿Quién llega al estante? ¡Tú puedes, detective!"
         },
@@ -103,28 +147,61 @@
             {
               "id": "lord",
               "nombre": "Lord Zapatudo",
-              "atributos": { "altura": "1,80 m", "mano buena": "zurdo", "ojos": "grises", "pelo": "castaño liso" }
+              "atributos": {
+                "altura": "1,80 m",
+                "mano buena": "zurdo",
+                "ojos": "grises",
+                "pelo": "castaño liso"
+              }
             },
             {
               "id": "duquesa",
               "nombre": "La Duquesa",
-              "atributos": { "altura": "1,63 m", "mano buena": "diestra", "ojos": "azules", "pelo": "blanco ondulado" }
+              "atributos": {
+                "altura": "1,63 m",
+                "mano buena": "diestra",
+                "ojos": "azules",
+                "pelo": "blanco ondulado"
+              }
             },
             {
               "id": "mayordomo",
               "nombre": "El Mayordomo",
-              "atributos": { "altura": "1,70 m", "mano buena": "diestra", "ojos": "marrones", "pelo": "negro con canas" }
+              "atributos": {
+                "altura": "1,70 m",
+                "mano buena": "diestra",
+                "ojos": "marrones",
+                "pelo": "negro con canas"
+              }
             }
           ],
           "donde": [
-            { "id": "sotano", "nombre": "Sótano" },
-            { "id": "jardin_rosas", "nombre": "Jardín rosas" },
-            { "id": "torre_vigia", "nombre": "Torre Vigía" }
+            {
+              "id": "sotano",
+              "nombre": "Sótano"
+            },
+            {
+              "id": "jardin_rosas",
+              "nombre": "Jardín rosas"
+            },
+            {
+              "id": "torre_vigia",
+              "nombre": "Torre Vigía"
+            }
           ],
           "que": [
-            { "id": "curiosidad", "nombre": "Por curiosidad" },
-            { "id": "vender", "nombre": "Para venderla" },
-            { "id": "proteger", "nombre": "Para protegerla" }
+            {
+              "id": "curiosidad",
+              "nombre": "Por curiosidad"
+            },
+            {
+              "id": "vender",
+              "nombre": "Para venderla"
+            },
+            {
+              "id": "proteger",
+              "nombre": "Para protegerla"
+            }
           ],
           "pruebas": [
             {
@@ -157,7 +234,11 @@
             "—Entonces solo queda una persona con pelo completamente blanco —dijo Ana, muy emocionada—. ¡La Duquesa Ventisca tiene el pelo blanco ondulado! ¡Ella encaja con lo que vio el cuervo!",
             "—Y el diario —recordó Michael— habla exactamente de su situación: sabe que viene alguien peligroso y quiere proteger el secreto. La Duquesa tenía el motivo y estuvo en el jardín de rosas esa noche."
           ],
-          "solucion": { "quien": "duquesa", "donde": "jardin_rosas", "que": "proteger" },
+          "solucion": {
+            "quien": "duquesa",
+            "donde": "jardin_rosas",
+            "que": "proteger"
+          },
           "feedback_ok": "¡CASO RESUELTO! La Duquesa Ventisca tomó la llave y la escondió en el jardín de las rosas para proteger el secreto de la torre de un visitante peligroso. ¡Sus intenciones eran buenas! La Happy Pandi lo ha conseguido.",
           "feedback_ko": "—Casi —dijo Victoria—. Fíjate en el color del pelo y en el diario. ¿Quién tenía el motivo? ¿Quién vio el cuervo? ¡Las pruebas no mienten!"
         }
@@ -180,19 +261,61 @@
             "La pintura usada es especial y solo se vende en tres tiendas. Cada uno tenía una razón diferente. ¡A investigar!"
           ],
           "quien": [
-            { "id": "carla", "nombre": "Carla", "atributos": { "barrio": "norte", "profesión": "artista", "pelo": "teñido" } },
-            { "id": "obed", "nombre": "Sr. Obed", "atributos": { "barrio": "centro", "profesión": "comerciante", "pelo": "escaso" } },
-            { "id": "nuria", "nombre": "Nuria", "atributos": { "barrio": "sur", "profesión": "estudiante arte", "pelo": "largo" } }
+            {
+              "id": "carla",
+              "nombre": "Carla",
+              "atributos": {
+                "barrio": "norte",
+                "profesión": "artista",
+                "pelo": "teñido"
+              }
+            },
+            {
+              "id": "obed",
+              "nombre": "Sr. Obed",
+              "atributos": {
+                "barrio": "centro",
+                "profesión": "comerciante",
+                "pelo": "escaso"
+              }
+            },
+            {
+              "id": "nuria",
+              "nombre": "Nuria",
+              "atributos": {
+                "barrio": "sur",
+                "profesión": "estudiante arte",
+                "pelo": "largo"
+              }
+            }
           ],
           "donde": [
-            { "id": "mercado_arte", "nombre": "Mercado Arte" },
-            { "id": "ferreteria_sur", "nombre": "Ferretería Sur" },
-            { "id": "papeleria", "nombre": "Papelería" }
+            {
+              "id": "mercado_arte",
+              "nombre": "Mercado Arte"
+            },
+            {
+              "id": "ferreteria_sur",
+              "nombre": "Ferretería Sur"
+            },
+            {
+              "id": "papeleria",
+              "nombre": "Papelería"
+            }
           ],
           "que": [
-            { "id": "protesta", "nombre": "Protesta" },
-            { "id": "publicidad", "nombre": "Publicidad" },
-            { "id": "proyecto", "nombre": "Proyecto escolar" }
+            {
+              "id": "protesta",
+              "nombre": "Protesta"
+            },
+            {
+              "id": "publicidad",
+              "nombre": "Publicidad"
+            },
+            {
+              "id": "proyecto",
+              "nombre": "Proyecto escolar"
+            }
           ],
           "pruebas": [
             {
@@ -225,7 +348,11 @@
             "Una artista callejera pintaría como protesta artística, no para hacer publicidad de un negocio.",
             "Carla: manchas del mismo lote, vive en el barrio norte, es artista. Todo encaja."
           ],
-          "solucion": { "quien": "carla", "donde": "ferreteria_sur", "que": "protesta" },
+          "solucion": {
+            "quien": "carla",
+            "donde": "ferreteria_sur",
+            "que": "protesta"
+          },
           "feedback_ok": "¡Caso cerrado! Carla pintó la estatua como protesta artística, comprando la pintura en la Ferretería del Sur a las 23:10. ¡Deducción impecable!",
           "feedback_ko": "Las manchas de pintura son la clave. ¡Vuelve a las pruebas!"
         },
@@ -240,19 +367,61 @@
             "El robot necesita una tarjeta especial para encenderse. Alguien tenía un plan muy concreto."
           ],
           "quien": [
-            { "id": "felix", "nombre": "Félix", "atributos": { "cargo": "profesor", "tarjeta": "nº 1", "pelo": "barba" } },
-            { "id": "sonia", "nombre": "Sonia", "atributos": { "cargo": "estudiante", "tarjeta": "nº 3", "pelo": "coleta" } },
-            { "id": "garrido", "nombre": "Sr. Garrido", "atributos": { "cargo": "mantenimiento", "tarjeta": "ninguna", "pelo": "gris" } }
+            {
+              "id": "felix",
+              "nombre": "Félix",
+              "atributos": {
+                "cargo": "profesor",
+                "tarjeta": "nº 1",
+                "pelo": "barba"
+              }
+            },
+            {
+              "id": "sonia",
+              "nombre": "Sonia",
+              "atributos": {
+                "cargo": "estudiante",
+                "tarjeta": "nº 3",
+                "pelo": "coleta"
+              }
+            },
+            {
+              "id": "garrido",
+              "nombre": "Sr. Garrido",
+              "atributos": {
+                "cargo": "mantenimiento",
+                "tarjeta": "ninguna",
+                "pelo": "gris"
+              }
+            }
           ],
           "donde": [
-            { "id": "casa_felix", "nombre": "Casa Félix" },
-            { "id": "garaje", "nombre": "Garaje cole" },
-            { "id": "club_robotica", "nombre": "Club robótica" }
+            {
+              "id": "casa_felix",
+              "nombre": "Casa Félix"
+            },
+            {
+              "id": "garaje",
+              "nombre": "Garaje cole"
+            },
+            {
+              "id": "club_robotica",
+              "nombre": "Club robótica"
+            }
           ],
           "que": [
-            { "id": "reparar", "nombre": "Repararlo" },
-            { "id": "competicion", "nombre": "Competición" },
-            { "id": "vender", "nombre": "Venderlo" }
+            {
+              "id": "reparar",
+              "nombre": "Repararlo"
+            },
+            {
+              "id": "competicion",
+              "nombre": "Competición"
+            },
+            {
+              "id": "vender",
+              "nombre": "Venderlo"
+            }
           ],
           "pruebas": [
             {
@@ -284,7 +453,11 @@
             "Félix habría usado su tarjeta nº 1. El Sr. Garrido no tiene tarjeta de laboratorio.",
             "Tarjeta, formulario, cámara: todo apunta a Sonia y al club de robótica."
           ],
-          "solucion": { "quien": "sonia", "donde": "club_robotica", "que": "competicion" },
+          "solucion": {
+            "quien": "sonia",
+            "donde": "club_robotica",
+            "que": "competicion"
+          },
           "feedback_ok": "¡Extraordinario! Sonia se llevó a NICO al club de robótica para el Torneo Regional. ¡Quería ganar con el mejor robot del colegio!",
           "feedback_ko": "La tarjeta y el formulario son las claves. ¡Inténtalo de nuevo!"
         }
