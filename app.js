@@ -121,6 +121,18 @@ function inicializarUI() {
     }
   });
 
+  // Botón "Tutorial" del header: relanza el onboarding manualmente, en cualquier momento
+  var btnTutorialHeader = document.getElementById('btn-tutorial-header');
+  if (btnTutorialHeader) {
+    btnTutorialHeader.addEventListener('click', function() {
+      if (!estado.casoActual) {
+        alert('Abre un caso primero para ver el tutorial.');
+        return;
+      }
+      lanzarTutorialManual();
+    });
+  }
+
   // Cerrar modales con overlay
   document.getElementById('modal-resolver').addEventListener('click', function(e) {
     if (e.target === this) { cerrarModal('modal-resolver'); }
@@ -154,6 +166,9 @@ function inicializarUI() {
 // NAVEGACIÓN DE PANTALLAS
 // ===================================
 function mostrarPantalla(nombre) {
+  // Si había un tooltip de tutorial abierto, lo retiramos para no dejarlo flotando
+  if (typeof quitarTooltip === 'function') { quitarTooltip(); }
+
   var ids = ['pantalla-home','pantalla-paquetes','pantalla-casos','pantalla-caso','pantalla-error','pantalla-cargando'];
   for (var i = 0; i < ids.length; i++) {
     var el = document.getElementById(ids[i]);
@@ -521,7 +536,7 @@ function renderizarCuadricula(caso) {
   var thQue = document.createElement('th');
   thQue.colSpan = que.length;
   thQue.className = 'th-grupo th-grupo-que';
-  thQue.textContent = '💡POR QUÉ';
+  thQue.textContent = '💡 POR QUÉ';
   trGrupo.appendChild(thQue);
 
   thead.appendChild(trGrupo);
@@ -685,49 +700,7 @@ function clickCelda(td, caso, tipo, filaId, colId) {
   td.className = 'celda-grid estado-' + siguiente;
   actualizarTextoCelda(td, siguiente);
 
-  // Modo ayuda automática
-  var toggleAyuda = document.getElementById('toggle-ayuda-auto');
-  if (toggleAyuda && toggleAyuda.checked && siguiente === 'check') {
-    aplicarAyudaAutomatica(caso, tipo, filaId, colId);
-  }
-
   guardarProgreso();
-}
-
-function aplicarAyudaAutomatica(caso, tipo, filaId, colId) {
-  var prog = estado.progreso[caso.id];
-  var filas, columnas;
-
-  if (tipo === 'quien-donde') {
-    filas = caso.quien;
-    columnas = caso.donde;
-  } else {
-    filas = caso.quien;
-    columnas = caso.que;
-  }
-
-  // Marcar ✖ en el resto de la misma fila
-  for (var j = 0; j < columnas.length; j++) {
-    if (columnas[j].id !== colId) {
-      var clave = tipo + '_' + filaId + '_' + columnas[j].id;
-      if (!prog.cuadricula[clave] || prog.cuadricula[clave] === 'vacio') {
-        prog.cuadricula[clave] = 'cruz';
-      }
-    }
-  }
-
-  // Marcar ✖ en el resto de la misma columna
-  for (var i = 0; i < filas.length; i++) {
-    if (filas[i].id !== filaId) {
-      var clave = tipo + '_' + filas[i].id + '_' + colId;
-      if (!prog.cuadricula[clave] || prog.cuadricula[clave] === 'vacio') {
-        prog.cuadricula[clave] = 'cruz';
-      }
-    }
-  }
-
-  // Re-renderizar la cuadricula unificada
-  renderizarCuadricula(caso);
 }
 
 // ===================================
@@ -903,6 +876,13 @@ function abrirTutorial() {
   mostrarTooltip(0);
 }
 
+// Relanza el tutorial manualmente desde el botón del header,
+// sin importar si ya se vio antes.
+function lanzarTutorialManual() {
+  tooltipPasoActual = 0;
+  mostrarTooltip(0);
+}
+
 function cerrarTutorial() {
   quitarTooltip();
   localStorage.setItem('dj_tutorial_visto', '1');
@@ -939,8 +919,26 @@ function mostrarTooltip(pasoIdx) {
   var ancla = document.getElementById(paso.ancla);
   if (!ancla) { tooltipSiguiente(); return; }
 
-  // Scroll al elemento ancla
-  ancla.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // Si la sección de Historia está minimizada, hay que volver a abrirla
+  // para el primer paso, o el ancla 'caso-historia-wrap' estará oculta (display:none)
+  // y su getBoundingClientRect() devolverá un rectángulo vacío.
+  if (paso.ancla === 'caso-historia-wrap') {
+    var wrap = document.getElementById('caso-historia-wrap');
+    if (wrap && wrap.style.display === 'none') {
+      expandirHistoria();
+    }
+  }
+  // Si la sección de Pruebas está colapsada, abrirla para que el paso 2 sea visible
+  if (paso.ancla === 'seccion-pruebas') {
+    var acordeon = document.getElementById('pruebas-acordeon');
+    if (acordeon && (acordeon.style.display === 'none' || acordeon.getAttribute('aria-hidden') === 'true')) {
+      expandirPruebas();
+    }
+  }
+
+  // Scroll INSTANTÁNEO (no 'smooth') para evitar que la animación de scroll
+  // termine después de calcular la posición del tooltip, que lo dejaba descolocado.
+  ancla.scrollIntoView({ behavior: 'auto', block: 'center' });
   ancla.classList.add('tutorial-highlight');
 
   // Overlay semitransparente
@@ -951,6 +949,7 @@ function mostrarTooltip(pasoIdx) {
   // Crear tooltip
   tooltipEl = document.createElement('div');
   tooltipEl.className = 'tooltip-onboarding tooltip-' + paso.posicion;
+  tooltipEl.style.visibility = 'hidden'; // ocultar hasta calcular su posición real
 
   var progreso = (pasoIdx + 1) + ' / ' + tooltipsPasos.length;
 
@@ -964,8 +963,7 @@ function mostrarTooltip(pasoIdx) {
 
   document.body.appendChild(tooltipEl);
 
-  // Posicionar después de render
-  setTimeout(function() {
+  function posicionarTooltip() {
     var rect = ancla.getBoundingClientRect();
     var scrollY = window.scrollY || window.pageYOffset;
     var scrollX = window.scrollX || window.pageXOffset;
@@ -986,7 +984,14 @@ function mostrarTooltip(pasoIdx) {
 
     tooltipEl.style.left = left + 'px';
     tooltipEl.style.top = top + 'px';
-  }, 120);
+    tooltipEl.style.visibility = 'visible';
+  }
+
+  // Como el scroll ya es instantáneo, un solo frame de espera (requestAnimationFrame)
+  // es suficiente para que el layout esté asentado antes de medir posiciones.
+  requestAnimationFrame(function() {
+    requestAnimationFrame(posicionarTooltip);
+  });
 }
 
 // expand pruebas helper

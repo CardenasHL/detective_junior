@@ -1622,3 +1622,37 @@ h4, h5, h6  { font-family: var(--font-cuerpo); font-weight: 800; }
   opacity: 1 !important;
   padding: 12px 14px !important;
 }
+
+/* ===================================
+   BOTÓN TUTORIAL (header)
+   =================================== */
+#btn-tutorial-header {
+  background: var(--color-papel);
+  color: var(--color-azul-oscuro);
+  border: 2px solid var(--color-azul-claro);
+  padding: 7px 16px;
+  border-radius: var(--radio-pill);
+  font-family: var(--font-cuerpo);
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background var(--transicion), border-color var(--transicion), transform var(--transicion);
+  white-space: nowrap;
+}
+
+#btn-tutorial-header:hover {
+  background: var(--color-azul-claro);
+  color: white;
+  border-color: var(--color-azul);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  #btn-tutorial-header {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+}
