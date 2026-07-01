@@ -172,12 +172,16 @@ function mostrarPantalla(nombre) {
   var ids = ['pantalla-home','pantalla-paquetes','pantalla-casos','pantalla-caso','pantalla-error','pantalla-cargando'];
   for (var i = 0; i < ids.length; i++) {
     var el = document.getElementById(ids[i]);
-    if (el) {
-      el.classList.remove('activa');
-    }
+    if (el) { el.classList.remove('activa'); }
   }
   var target = document.getElementById('pantalla-' + nombre);
   if (target) { target.classList.add('activa'); }
+
+  // Botón tutorial: solo visible dentro de un caso
+  var btnTutorial = document.getElementById('btn-tutorial-header');
+  if (btnTutorial) {
+    btnTutorial.style.display = (nombre === 'caso') ? 'flex' : 'none';
+  }
 }
 
 function mostrarError(msg) {
