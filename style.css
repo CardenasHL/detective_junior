@@ -1627,6 +1627,7 @@ h4, h5, h6  { font-family: var(--font-cuerpo); font-weight: 800; }
    BOTÓN TUTORIAL (header)
    =================================== */
 #btn-tutorial-header {
+  display: none; /* solo visible dentro de un caso */
   background: var(--color-papel);
   color: var(--color-azul-oscuro);
   border: 2px solid var(--color-azul-claro);
