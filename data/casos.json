@@ -133,13 +133,17 @@
           "dificultad": 1,
           "historia": [
             "El segundo caso llegó el domingo por la mañana. Pili aterrizó sobre la mesa del desayuno con un holograma urgente.",
-            "—¡Buenos días! En el Castillo Neblinoso han robado la llave de la Torre Prohibida —anunció con su voz más dramática—. Lleva cerrada cien años.",
+            "—¡Buenos días! En el Castillo Neblinoso han robado la llave de la Torre Prohibida —anunció con su voz más dramática—, ¡que lleva cerrada cien años!",
             "—¿Qué habrá dentro? —dijo Ana levantando la mano—. Un dragón dormido, un tesoro maldito o... —pausa teatral— ...un baño muy antiguo.",
             "—Ana. —Lola la miró fijamente.",
             "—Perdona, perdona. Me centro.",
-            "Michael ya anotaba a toda velocidad. —Tres sospechosos: Lord Zapatudo, que colecciona cosas ajenas; la Duquesa Ventisca, que lleva semanas murmurando sobre la torre; y el Mayordomo Corcovado, que conoce cada rincón del castillo.",
-            "—¿Un mayordomo llamado Corcovado? —Tao se rio y tropezó con su silla—. Perdón.",
-            "—El barro, el diario y el cuervo guardián son nuestras tres pruebas —dijo Victoria organizando las fichas—. Paso a paso, como hicimos antes. ¡A usar la cuadrícula!"
+            "Pili miró a Ana y se le puso un ojo rojo. No le gustaba que la interrumpieran.",
+            "—Le birlaron la llave al pobre mayordomo, que siempre la llevaba en el bolsillo por si acaso. Como su padre, y el padre de su padre, y el padre de su padre...",
+            "Pili se quedó atrancada, como tantas veces, pero Michael ya anotaba a toda velocidad y retomó el hilo:",
+            "—Tres sospechosos: Lord Zapatudo, que colecciona tesoros ajenos; la Duquesa Ventisca, que lleva una década obsesionada con la Torre Prohibida... y el Mayordomo Avariento, claro, que podría estar mintiendo, y siempre se queja de su sueldo.",
+            "—¿El mayordomo se llama Avariento? —Tao se rio y tropezó con su silla—. Perdón.",
+            "Victoria empezó a ordenar las fichas de los sospechosos y dijo:",
+            "—El ladrón huyó en helicóptero desde el patio de armas. Tenemos tres pruebas del crimen: unas huellas, el testimonio del cuervo guardián, y un diario... si conseguimos sacarle algo a este último, claro. Pero vayamos paso a paso, como hicimos antes. ¡No olvidéis usar la cuadrícula!"
           ],
           "quien": [
             {
@@ -164,12 +168,12 @@
             },
             {
               "id": "mayordomo",
-              "nombre": "El Mayordomo",
+              "nombre": "El Mayordomo Avariento",
               "atributos": {
                 "altura": "1,70 m",
-                "mano buena": "diestra",
+                "mano buena": "diestro",
                 "ojos": "marrones",
-                "pelo": "negro con canas"
+                "pelo": "blanco corto"
               }
             }
           ],
@@ -183,14 +187,14 @@
               "nombre": "Jardín rosas"
             },
             {
-              "id": "torre_vigia",
-              "nombre": "Torre Vigía"
+              "id": "cocina",
+              "nombre": "Cocina"
             }
           ],
           "que": [
             {
-              "id": "curiosidad",
-              "nombre": "Por curiosidad"
+              "id": "usarla",
+              "nombre": "Para usarla"
             },
             {
               "id": "vender",
@@ -203,42 +207,41 @@
           ],
           "pruebas": [
             {
-              "id": "prueba_barro",
+              "id": "prueba_huellas",
               "tipo": "text",
-              "titulo": "🌱 Análisis del barro",
-              "descripcion": "—Este barro es rojizo —dijo Victoria arrodillándose bajo el gancho vacío—. Pili, ¿de dónde viene?\n\n—Solo existe en el jardín de las rosas, cerca del estanque —respondió Pili—. Conclusión: quien tomó la llave pisó ese jardín esa misma noche.",
-              "imagen": null
-            },
-            {
-              "id": "prueba_diario",
-              "tipo": "text",
-              "titulo": "📔 Diario encontrado",
-              "descripcion": "Lola encontró el diario abierto sobre la mesita de la sala azul. Ana leyó en voz alta la última entrada:\n\n«Alguien muy peligroso viene a por el secreto de la torre. He averiguado cuándo llegará. Debo actuar antes. La llave estará más segura conmigo que en ese gancho».\n\n—¡Ella sabía que venía alguien! —exclamó Michael.",
-              "imagen": null
+              "titulo": "👣 Análisis de huellas",
+              "descripcion": "—Estas huellas tienen barro —dijo Victoria mirando de cerca con su lupa—. Pili, ¿de dónde vendrán?\n\n—Podría ser de muchos sitios húmedos... —respondió Pili—. Lo que SÍ te puedo asegurar es que no vienen de la Cocina: ese suelo está tan limpio que brilla. ¡Ahí no se le pega el barro a nadie!\n\n—Victoria, piensa antes de hablar, que para eso tienes cerebro —añadió Pili en plan borde."
             },
             {
               "id": "prueba_cuervo",
               "tipo": "text",
               "titulo": "🐦 Testimonio del cuervo",
-              "descripcion": "El cuervo guardián del castillo graznó tres veces cuando los niños se acercaron. Pili alzó una aleta.\n\n—Permito que yo interprete. El cuervo indica que vio a alguien cruzar el jardín de las rosas a las 2 de la madrugada. La persona tenía el pelo completamente blanco y llevaba algo brillante en la mano.\n\n—¿El cuervo habla? —preguntó Tao.\n—Yo interpreto sus patrones de graznido —aclaró Pili—. Hay una diferencia enorme.",
-              "imagen": null
+              "descripcion": "De repente, el cuervo guardián del castillo graznó tres veces. Pili alzó una aleta y dijo:\n\n«Permitidme que yo interprete. El cuervo vio a alguien llegar al patio de armas a toda prisa. Tenía el pelo blanco y se subió a un helicóptero.»\n\n—¿El cuervo habla? —preguntó Tao.\n—Pero cómo va a hablar un cuervo, atontao —dijo Pili—. Yo interpreto sus patrones de graznido. Hay una diferencia enorme."
+            },
+            {
+              "id": "prueba_diario",
+              "tipo": "text",
+              "titulo": "📔 Diario encontrado",
+              "descripcion": "—Este diario estaba en el suelo del patio —dijo Victoria.\n\nAna leyó en voz alta la última entrada: «Alguien muy peligroso viene a por el tesoro de la torre. He actuado antes que él. La llave no estaba en un lugar seguro».\n\n—¡Alguien quería robar la llave para entrar en la Torre Prohibida! —exclamó Michael.\n—Pero el Mayordomo siempre lleva la llave encima, en el bolsillo, como hacía su padre y el padre de su padre —recordó Victoria—. Para él, la llave SIEMPRE estuvo segura. Esta entrada no puede ser suya."
             }
           ],
           "pistas": [
-            "—El barro rojizo solo existe en el jardín de las rosas —dijo Victoria—. Así que podemos marcar ✖ para el Sótano y la Torre Vigía en quienquiera que sea. El lugar es el Jardín de rosas.",
-            "—Espera, aún no sabemos quién fue —dijo Lola—. Miremos el diario. La persona sabía que venía alguien peligroso y quería proteger la llave. Eso no es curiosidad ni querer venderla. El motivo es 'para protegerla'.",
-            "—Ahora el cuervo —continuó Victoria—. Vio a alguien con el pelo completamente blanco. Revisad las fichas: Lord Zapatudo tiene el pelo castaño liso. Él no tiene pelo blanco. Podemos poner ✖ a Lord Zapatudo en todos los lugares.",
-            "—El Mayordomo —dijo Alex sin levantar la vista de su cuaderno— tiene el pelo negro con canas. Eso no es 'completamente blanco'. El cuervo no vio al Mayordomo.",
-            "—Entonces solo queda una persona con pelo completamente blanco —dijo Ana, muy emocionada—. ¡La Duquesa Ventisca tiene el pelo blanco ondulado! ¡Ella encaja con lo que vio el cuervo!",
-            "—Y el diario —recordó Michael— habla exactamente de su situación: sabe que viene alguien peligroso y quiere proteger el secreto. La Duquesa tenía el motivo y estuvo en el jardín de rosas esa noche."
+            "—El barro de las huellas no viene de la Cocina, que está impecable —dijo Victoria—. Pero podría venir tanto del Jardín como del Sótano. Solo descartamos la Cocina, de momento.",
+            "—El cuervo vio a alguien con el pelo blanco —recordó Ana—. Lord Zapatudo tiene el pelo castaño liso. ¡Él no encaja! Queda descartado como sospechoso.",
+            "—Pero la Duquesa Y el Mayordomo Avariento tienen el pelo blanco —señaló Alex, sin dejar de dibujar—. El cuervo no nos sirve para elegir entre ellos dos. Necesitamos otra pista.",
+            "—El diario dice que la llave 'no estaba en un lugar seguro' —leyó Michael—. Pero el Mayordomo siempre la lleva encima, en el bolsillo, como su padre y el padre de su padre. ¡Para él, la llave siempre estuvo segura! Esta entrada del diario no puede ser suya.",
+            "—Entonces solo queda la Duquesa —concluyó Victoria—. A Lord Zapatudo lo descartó el cuervo, y al Mayordomo lo descarta el diario. ¡Ha sido la Duquesa Ventisca!",
+            "—Y el propio diario nos da el motivo —añadió Michael—: quería proteger la llave de alguien peligroso. Su motivo es 'para protegerla', no para usarla ni para venderla.",
+            "—Solo nos falta el lugar —dijo Lola—. Ya sabemos que no fue en la Cocina. Ese barro húmedo es más propio de un jardín al aire libre que de un sótano de piedra seca. Tiene que ser el Jardín de rosas.",
+            "—¡Caso resuelto! —exclamaron todos a la vez—. La Duquesa, en el Jardín de rosas, quería proteger la llave."
           ],
           "solucion": {
             "quien": "duquesa",
             "donde": "jardin_rosas",
             "que": "proteger"
           },
-          "feedback_ok": "¡CASO RESUELTO! La Duquesa Ventisca tomó la llave y la escondió en el jardín de las rosas para proteger el secreto de la torre de un visitante peligroso. ¡Sus intenciones eran buenas! La Happy Pandi lo ha conseguido.",
-          "feedback_ko": "—Casi —dijo Victoria—. Fíjate en el color del pelo y en el diario. ¿Quién tenía el motivo? ¿Quién vio el cuervo? ¡Las pruebas no mienten!"
+          "feedback_ok": "¡CASO RESUELTO! La Duquesa Ventisca tomó la llave y la escondió en el Jardín de rosas para proteger su secreto de un visitante peligroso. ¡Sus intenciones eran buenas! La Happy Pandi lo ha conseguido de nuevo.",
+          "feedback_ko": "—Casi —dijo Victoria—. Recuerda: el cuervo descarta a uno, el diario descarta a otro. Solo juntando las dos pistas sabes quién queda. ¡Sigue investigando, detective!"
         }
       ]
     },
